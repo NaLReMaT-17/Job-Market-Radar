@@ -647,7 +647,37 @@ if __name__ == "__main__":
         });
 
         // Автозагрузка при старте: если снапшот уже есть — показать без нового сбора
+        // Автозагрузка при старте: если снапшот уже есть — показать без нового сбора
         async function initialLoad() {
+            const isStaticHost = location.hostname.endsWith('github.io') ||
+                                location.protocol === 'file:';
+
+            if (isStaticHost) {
+                // На GitHub Pages / file:// — читаем data/latest.json напрямую
+                try {
+                    const res = await fetch('data/latest.jscd "C:\Users\the_f\OneDrive\Рабочий стол\programm\ПРОЕ"
+git add index.html
+git commit -m "Fix initialLoad for static hosting"
+git pushon?t=' + Date.now());
+                    if (res.ok) {
+                        const raw = await res.json();
+                        if (Array.isArray(raw) && raw.length > 0) {
+                            currentVacancies = applyFilters(raw);
+                            processAndRenderData();
+                            showToast(`Загружено ${raw.length} вакансий из data/latest.json`);
+                            return;
+                        }
+                    }
+                } catch (_) { /* падаем в triggerDataFetch */ }
+
+                // JSON не нашёлся — показываем демо-кэш
+                showToast("data/latest.json не найден. Использую демо-кэш.", true);
+                currentVacancies = applyFilters(MOCK_DATASET);
+                processAndRenderData();
+                return;
+            }
+
+            // === Локальный сервер ===
             try {
                 const res = await fetch('/api/vacancies?t=' + Date.now());
                 if (res.ok) {
@@ -659,9 +689,9 @@ if __name__ == "__main__":
                         return;
                     }
                 }
-            } catch (_) { /* игнорируем, пойдём собирать */ }
+            } catch (_) { /* пойдём собирать */ }
 
-            // Снапшота нет — запускаем полный сбор
+            // Снапшота нет — запускаем полный сбор (только на локальном сервере)
             triggerDataFetch();
         }
 
