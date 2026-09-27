@@ -733,6 +733,37 @@ if __name__ == "__main__":
                 return;
             }
 
+            // На GitHub Pages / file:// нет локального сервера — читаем JSON напрямую
+            const isStaticHost = location.hostname.endsWith('github.io') ||
+                                location.protocol === 'file:';
+
+            if (isStaticHost) {
+                try {
+                    updateProgress(30, "Читаем data/latest.json...");
+                    const res = await fetch('data/latest.json?t=' + Date.now());
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    const raw = await res.json();
+
+                    if (!Array.isArray(raw) || raw.length === 0) {
+                        throw new Error("Пустой data/latest.json");
+                    }
+
+                    currentVacancies = applyFilters(raw);
+                    updateProgress(100, "Готово!");
+                    processAndRenderData();
+                    showToast(`Загружено ${currentVacancies.length} вакансий из data/latest.json`);
+                } catch (e) {
+                    console.warn("Static fetch failed:", e);
+                    showToast("Не удалось прочитать data/latest.json. Использую демо-кэш.", true);
+                    currentVacancies = applyFilters(MOCK_DATASET);
+                    processAndRenderData();
+                } finally {
+                    setLoading(false);
+                }
+                return;
+            }
+
+            // === Локальный сервер — полный цикл со сбором ===
             try {
                 updateProgress(5, "Запрос на сбор данных с Trudvsem...");
 
@@ -743,9 +774,7 @@ if __name__ == "__main__":
                     throw new Error(`Не удалось запустить сбор: HTTP ${startRes.status}`);
                 }
 
-                // Опрос статуса, пока сервер собирает
                 let pct = 10;
-                // eslint-disable-next-line no-constant-condition
                 while (true) {
                     await new Promise(r => setTimeout(r, 1500));
                     pct = Math.min(pct + 3, 90);
@@ -760,7 +789,6 @@ if __name__ == "__main__":
                     }
                 }
 
-                // Читаем результат
                 const dataRes = await fetch('/api/vacancies?t=' + Date.now());
                 if (!dataRes.ok) throw new Error(`HTTP ${dataRes.status}`);
                 const raw = await dataRes.json();
@@ -783,7 +811,6 @@ if __name__ == "__main__":
                 setLoading(false);
             }
         }
-
         // Клиентская фильтрация: применяется к уже загруженному массиву вакансий
         function applyFilters(vacancies) {
             const query = (searchQueryInput.value || "").trim().toLowerCase();
