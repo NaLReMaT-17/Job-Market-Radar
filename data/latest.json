@@ -919,6 +919,21 @@
     "source": "trudvsem"
   },
   {
+    "id": "86a4e608-d0e4-11f0-95a5-b982dbc00f11",
+    "name": "Инженер Девопс",
+    "role_name": "DevOps",
+    "employer": "ООО \"ИТМ\"",
+    "area": "Краснодарский край",
+    "sal_rub": 260000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "CI/CD"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/1142311001744/86a4e608-d0e4-11f0-95a5-b982dbc00f11",
+    "source": "trudvsem"
+  },
+  {
     "id": "9a6783c4-2443-11f1-89a6-53287c563eeb",
     "name": "IT-директор мобильного приложения",
     "role_name": "DevOps",
@@ -941,21 +956,6 @@
       "Swift"
     ],
     "url": "https://trudvsem.ru/vacancy/card/5147746474134/9a6783c4-2443-11f1-89a6-53287c563eeb",
-    "source": "trudvsem"
-  },
-  {
-    "id": "86a4e608-d0e4-11f0-95a5-b982dbc00f11",
-    "name": "Инженер Девопс",
-    "role_name": "DevOps",
-    "employer": "ООО \"ИТМ\"",
-    "area": "Краснодарский край",
-    "sal_rub": 260000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "CI/CD"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/1142311001744/86a4e608-d0e4-11f0-95a5-b982dbc00f11",
     "source": "trudvsem"
   },
   {
