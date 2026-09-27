@@ -648,6 +648,7 @@ if __name__ == "__main__":
 
         // Автозагрузка при старте: если снапшот уже есть — показать без нового сбора
         // Автозагрузка при старте: если снапшот уже есть — показать без нового сбора
+        // Автозагрузка при старте: если снапшот уже есть — показать без нового сбора
         async function initialLoad() {
             const isStaticHost = location.hostname.endsWith('github.io') ||
                                 location.protocol === 'file:';
@@ -655,10 +656,7 @@ if __name__ == "__main__":
             if (isStaticHost) {
                 // На GitHub Pages / file:// — читаем data/latest.json напрямую
                 try {
-                    const res = await fetch('data/latest.jscd "C:\Users\the_f\OneDrive\Рабочий стол\programm\ПРОЕ"
-git add index.html
-git commit -m "Fix initialLoad for static hosting"
-git pushon?t=' + Date.now());
+                    const res = await fetch('data/latest.json?t=' + Date.now());
                     if (res.ok) {
                         const raw = await res.json();
                         if (Array.isArray(raw) && raw.length > 0) {
@@ -668,7 +666,7 @@ git pushon?t=' + Date.now());
                             return;
                         }
                     }
-                } catch (_) { /* падаем в triggerDataFetch */ }
+                } catch (_) { /* падаем в фолбэк */ }
 
                 // JSON не нашёлся — показываем демо-кэш
                 showToast("data/latest.json не найден. Использую демо-кэш.", true);
