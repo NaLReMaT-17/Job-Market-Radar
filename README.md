@@ -1,51 +1,47 @@
-# Job-Market-Radar
+# 📡 Job Market Radar
 
 Аналитический дашборд для исследования рынка IT-вакансий на основе
 открытого API портала «Работа России» (opendata.trudvsem.ru).
 
 ## Что внутри
 
-- **`src/collect.py`** — Python-скрипт: собирает вакансии с Trudvsem,
-  извлекает навыки из описаний, сохраняет в `data/latest.json`, `.csv`, `.parquet`.
-- **`server.py`** — локальный HTTP-сервер (stdlib), отдаёт статику и три API:
-  `POST /api/collect`, `GET /api/status`, `GET /api/vacancies`.
-- **`app.html`** — дашборд на Tailwind + Chart.js: KPI, топ навыков,
-  топ работодателей, список вакансий, экспорт CSV/JSON.
+| Файл | Назначение |
+|---|---|
+| `src/collect.py` | Python-скрипт сбора: Trudvsem → `data/latest.json/csv/parquet` |
+| `server.py` | Локальный HTTP-сервер (stdlib), отдаёт статику и API |
+| `app.html` | Дашборд на Tailwind + Chart.js |
+| `.github/workflows/update-data.yml` | Авто-обновление данных по расписанию |
 
 ## Требования
 
 - Python 3.11+
 - pip
 
-## Установка и запуск
+## Быстрый старт
 
 ```bash
-# 1. Клонировать репозиторий
-git clone https://github.com/<ваш-логин>/<репо>.git
-cd <репо>
+git clone https://github.com/<ваш-логин>/job-market-radar.git
+cd job-market-radar
 
-# 2. Создать виртуальное окружение
 python -m venv .venv
-
 # Windows:
 .\.venv\Scripts\Activate.ps1
-# macOS/Linux:
+# macOS / Linux:
 source .venv/bin/activate
 
-# 3. Установить зависимости
 pip install -r requirements.txt
-
-# 4. Запустить сервер
 python server.py
 ```
 
-Откройте в браузере: **http://127.0.0.1:8000/app.html**
+Откройте **http://127.0.0.1:8000/app.html**.
 
-Кнопка «Собрать данные» запустит сбор с Trudvsem (30–90 секунд на 5 ролей).
+При первом открытии приложение:
+- если в `data/latest.json` уже есть снапшот (обычно есть — его коммитит GitHub Actions) — покажет его сразу;
+- если файла нет — автоматически запустит сбор.
 
-## Автономный сбор без сервера
+Кнопка **«Собрать данные»** форсит новый сбор с Trudvsem в любой момент.
 
-Если нужны только данные (без UI):
+## Автономный сбор (без UI)
 
 ```bash
 python -m src.collect
@@ -53,20 +49,34 @@ python -m src.collect
 
 Результат: `data/latest.json`, `data/latest.csv`, `data/latest.parquet`.
 
+## Автоматическое обновление данных
+
+Файл `.github/workflows/update-data.yml` запускает сбор:
+- раз в сутки в 03:00 UTC (= 06:00 МСК),
+- вручную через вкладку **Actions → Update vacancy data → Run workflow**.
+
+После сбора workflow коммитит `data/latest.json` и `data/latest.csv` в `main`.
+
+Чтобы получить свежие данные локально:
+
+```bash
+git pull
+python server.py
+```
+
 ## Источник данных
 
-- API: https://opendata.trudvsem.ru/api/v1/vacancies
+- API: <https://opendata.trudvsem.ru/api/v1/vacancies>
 - Авторизация: не требуется
-- Ограничения: до 10000 записей за раз, пауза 0.5 с между запросами
+- Лимиты: до 10 000 записей за раз, пауза 0.5 с между запросами
 
 ## Ограничения методологии
 
-- **Навыки** извлекаются эвристически (regex по тексту описания),
-  а не приходят готовым списком.
+- **Навыки** извлекаются эвристически (regex по тексту описания), а не приходят готовым списком.
 - **Опыт работы** в Trudvsem часто не заполнен.
 - **Медианы зарплат** считаются только по вакансиям с явно указанной вилкой.
 - **Навыки пересекаются** — сумма их долей не равна 100%.
 
 ## Лицензия
 
-MIT (или ваша).
+MIT
