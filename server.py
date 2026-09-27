@@ -84,12 +84,14 @@ def run():
     DATA_DIR.mkdir(exist_ok=True)
 
     server = HTTPServer((HOST, PORT), Handler)
-    print(f"▶ Сервер: http://{HOST}:{PORT}/app.html")
+    print(f"▶ Сервер: http://{HOST}:{PORT}/index.html")
     print(f"▶ Сбор запускается кнопкой в приложении или: python -m src.collect")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        print("\n⏹ Остановлено.")
+        print("\n⏹ Остановлено.")git add .
+git commit -m "Rename app.html to index.html for static hosting"
+git push
         server.server_close()
 
 
