@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Market Radar — Аналитика IT-вакансий (Trudvsem API)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            500: '#06b6d4',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
+        .pulse-subtle { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .6; } }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm"></div>
+
+    <!-- Header / Navbar -->
+    <header class="bg-slate-900/90 backdrop-blur border-b border-slate-800 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-indigo-500 via-cyan-500 to-emerald-400 p-2.5 rounded-xl shadow-lg shadow-indigo-500/20">
+                    <i data-lucide="radar" id="radar-icon" class="w-6 h-6 text-white"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                        Job Market Radar
+                        <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Live Trudvsem
+                        </span>
+                    </h1>
+                    <p class="text-xs text-slate-400">Аналитический комплекс для исследования рынка IT-вакансий</p>
+                </div>
+            </div>
+
+            <!-- Header Mode Switcher & Stats -->
+            <div class="flex items-center gap-3">
+                <div class="flex items-center bg-slate-950 border border-slate-800 rounded-xl p-1 text-xs">
+                    <button id="mode-live-btn" class="px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1.5 bg-indigo-600 text-white shadow">
+                        <i data-lucide="zap" class="w-3.5 h-3.5"></i> Live Trudvsem
+                    </button>
+                    <button id="mode-mock-btn" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5">
+                        <i data-lucide="database" class="w-3.5 h-3.5"></i> Демо-кэш
+                    </button>
+                </div>
+
+                <div class="hidden lg:flex items-center gap-4 text-xs text-slate-300 bg-slate-900 px-3.5 py-2 rounded-xl border border-slate-800">
+                    <div class="flex items-center gap-1.5">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+                        <span>Статус API: <strong class="text-emerald-400" id="api-status">Подключен</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-grow space-y-6">
+
+        <!-- Controls Section -->
+        <section class="bg-slate-900/80 rounded-2xl p-5 border border-slate-800 shadow-xl space-y-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-800 pb-3 gap-2">
+                <h2 class="text-sm font-semibold uppercase tracking-wider text-indigo-400 flex items-center gap-2">
+                    <i data-lucide="sliders" class="w-4 h-4"></i> Фильтры и Запрос к Trudvsem
+                </h2>
+                <div class="flex items-center gap-3 text-xs text-slate-400">
+                    <span id="data-source-badge" class="bg-slate-800 px-2.5 py-1 rounded-md text-slate-300 border border-slate-700">
+                        Источник: <strong class="text-indigo-400">opendata.trudvsem.ru</strong>
+                    </span>
+                    <button id="reset-filters" class="text-slate-400 hover:text-white transition flex items-center gap-1">
+                        <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Сброс
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                <!-- Preset Search Role or Custom Query -->
+                <div class="lg:col-span-2">
+                    <label class="block text-xs font-medium text-slate-300 mb-1.5 flex items-center justify-between">
+                        <span>Поисковый запрос / Специализация</span>
+                        <span class="text-[10px] text-indigo-400">Trudvsem `text` query</span>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="search-query-input" value="Python Developer" placeholder="Например: Go Developer, React, Data Engineer..." class="w-full bg-slate-950 border border-slate-800 text-slate-100 rounded-xl pl-9 pr-24 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
+
+                        <!-- Quick Presets Dropdown trigger -->
+                        <select id="preset-select" class="absolute right-1 top-1 bottom-1 bg-slate-800 border-l border-slate-700 text-slate-300 text-xs rounded-r-lg px-2 focus:outline-none cursor-pointer">
+                            <option value="">Пресеты...</option>
+                            <option value="Python Developer">Python</option>
+                            <option value="Frontend React TypeScript">Frontend (React)</option>
+                            <option value="Data Engineer">Data Engineer</option>
+                            <option value="Data Scientist ML">Data Science / ML</option>
+                            <option value="DevOps Engineer">DevOps / Infra</option>
+                            <option value="QA Automation">QA Automation</option>
+                            <option value="Golang Developer">Go Developer</option>
+                            <option value="Java Developer">Java Developer</option>
+                            <option value="Системный аналитик">System Analyst</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Region Selector -->
+                <div>
+                    <label class="block text-xs font-medium text-slate-300 mb-1.5">Регион</label>
+                    <div class="relative">
+                        <select id="region-select" class="w-full bg-slate-950 border border-slate-800 text-slate-100 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none pr-8">
+                            <option value="113">Все регионы (РФ)</option>
+                            <option value="1">Москва</option>
+                            <option value="2">Санкт-Петербург</option>
+                            <option value="160">Казахстан</option>
+                            <option value="1001">Все страны СНГ</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-2.5 top-2.5 pointer-events-none"></i>
+                    </div>
+                </div>
+
+                <!-- Experience Level -->
+                <div>
+                    <label class="block text-xs font-medium text-slate-300 mb-1.5">Опыт работы</label>
+                    <div class="relative">
+                        <select id="exp-select" class="w-full bg-slate-950 border border-slate-800 text-slate-100 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none pr-8">
+                            <option value="all">Любой опыт</option>
+                            <option value="noExperience">Без опыта (Junior)</option>
+                            <option value="between1And3">От 1 до 3 лет (Junior+/Middle)</option>
+                            <option value="between3And6">От 3 до 6 лет (Middle+/Senior)</option>
+                            <option value="moreThan6">Более 6 лет (Lead/Senior)</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-2.5 top-2.5 pointer-events-none"></i>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <div class="flex items-end">
+                    <button id="fetch-data-btn" class="w-full bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-medium py-2 px-4 rounded-xl text-sm transition shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2">
+                        <i data-lucide="refresh-cw" id="btn-spin-icon" class="w-4 h-4"></i>
+                        <span id="btn-text">Собрать данные</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Advanced Live Progress Bar (Hidden during idle) -->
+            <div id="progress-container" class="hidden space-y-1.5 pt-2 border-t border-slate-800">
+                <div class="flex justify-between text-xs text-slate-400">
+                    <span id="progress-status-text">Загрузка вакансий из opendata.trudvsem.ru...</span>
+                    <span id="progress-pct-text">0%</span>
+                </div>
+                <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
+                    <div id="progress-bar-fill" class="bg-gradient-to-r from-indigo-500 to-cyan-400 h-full w-0 transition-all duration-300"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KPI Cards Grid -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Metric 1: Total Sample Size N -->
+            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between shadow-lg">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs text-slate-400 font-medium">Обработано вакансий ($N$)</span>
+                    <div class="p-2 bg-indigo-500/10 text-indigo-400 rounded-xl border border-indigo-500/20"><i data-lucide="users" class="w-4 h-4"></i></div>
+                </div>
+                <div class="mt-3">
+                    <div class="text-2xl font-bold text-white font-mono" id="kpi-sample-size">0</div>
+                    <div class="text-[11px] text-slate-400 mt-1 flex items-center gap-1">
+                        С вилкой: <span id="kpi-salary-disclosed" class="text-emerald-400 font-semibold">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metric 2: Overall Role Median Salary -->
+            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between shadow-lg">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs text-slate-400 font-medium">Медианная ЗП (руб)</span>
+                    <div class="p-2 bg-emerald-500/10 text-emerald-400 rounded-xl border border-emerald-500/20"><i data-lucide="banknote" class="w-4 h-4"></i></div>
+                </div>
+                <div class="mt-3">
+                    <div class="text-2xl font-bold text-white font-mono" id="kpi-median-salary">0 ₽</div>
+                    <div class="text-[11px] text-slate-400 mt-1">
+                        Средняя: <span id="kpi-mean-salary" class="text-slate-300 font-mono">0 ₽</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metric 3: Remote Share -->
+            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between shadow-lg">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs text-slate-400 font-medium">Доля удалёнки</span>
+                    <div class="p-2 bg-cyan-500/10 text-cyan-400 rounded-xl border border-cyan-500/20"><i data-lucide="laptop" class="w-4 h-4"></i></div>
+                </div>
+                <div class="mt-3">
+                    <div class="text-2xl font-bold text-white font-mono" id="kpi-remote-share">0%</div>
+                    <div class="text-[11px] text-slate-400 mt-1">
+                        По ключевым словам в описании
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metric 4: Top In-Demand Skill -->
+            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between shadow-lg">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs text-slate-400 font-medium">Навык №1 по спросу</span>
+                    <div class="p-2 bg-amber-500/10 text-amber-400 rounded-xl border border-amber-500/20"><i data-lucide="award" class="w-4 h-4"></i></div>
+                </div>
+                <div class="mt-3">
+                    <div class="text-xl font-bold text-white truncate" id="kpi-top-skill">—</div>
+                    <div class="text-[11px] text-slate-400 mt-1">
+                        Встречается в <span id="kpi-top-skill-share" class="text-amber-400 font-semibold">0%</span> вакансий
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Tabs for Analytics vs Raw List vs Code -->
+        <div class="border-b border-slate-800 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-2 overflow-x-auto custom-scrollbar pb-1">
+                <button id="tab-btn-overview" onclick="switchTab('overview')" class="px-4 py-2 text-xs font-semibold rounded-t-xl border-b-2 border-indigo-500 text-indigo-400 bg-slate-900 flex items-center gap-2">
+                    <i data-lucide="bar-chart-2" class="w-4 h-4"></i> Аналитика Навыков & Компаний
+                </button>
+                <button id="tab-btn-vacancies" onclick="switchTab('vacancies')" class="px-4 py-2 text-xs font-semibold rounded-t-xl border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2">
+                    <i data-lucide="list" class="w-4 h-4"></i> Список Вакансий (<span id="tab-vacancies-count">0</span>)
+                </button>
+                <button id="tab-btn-python" onclick="switchTab('python')" class="px-4 py-2 text-xs font-semibold rounded-t-xl border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2">
+                    <i data-lucide="code" class="w-4 h-4"></i> Python ETL Скрипт
+                </button>
+            </div>
+
+            <!-- Export Buttons -->
+            <div class="flex items-center gap-2 pb-1">
+                <button onclick="exportToCSV()" class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-300 hover:text-white hover:border-slate-700 transition flex items-center gap-1.5">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i> Export CSV
+                </button>
+                <button onclick="exportToJSON()" class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-300 hover:text-white hover:border-slate-700 transition flex items-center gap-1.5">
+                    <i data-lucide="file-json" class="w-3.5 h-3.5"></i> Export JSON
+                </button>
+            </div>
+        </div>
+
+        <!-- TAB 1: OVERVIEW & CHARTS -->
+        <div id="tab-content-overview" class="space-y-6">
+            <!-- Visualizations Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                <!-- Top Skills Bar Chart (2 cols) -->
+                <div class="lg:col-span-2 bg-slate-900/80 border border-slate-800 rounded-2xl p-5 shadow-lg flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h3 class="text-base font-semibold text-white flex items-center gap-2">
+                                    <i data-lucide="bar-chart-3" class="w-5 h-5 text-indigo-400"></i> Топ Навыков & Индекс востребованности
+                                </h3>
+                                <p class="text-xs text-slate-400">Частота встречаемости технологий, извлечённых из описаний вакансий</p>
+                            </div>
+                            <span class="text-xs text-slate-400 bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-800">Top-12</span>
+                        </div>
+                        <div class="h-80 w-full relative">
+                            <canvas id="skillsChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                        <span>💡 <strong>Индекс востребованности:</strong> Процент вакансий, в которых явно упомянут навык.</span>
+                    </div>
+                </div>
+
+                <!-- Top Employers Panel (1 col) -->
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 shadow-lg flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-base font-semibold text-white flex items-center gap-2">
+                                <i data-lucide="building-2" class="w-5 h-5 text-cyan-400"></i> Топ Работодателей
+                            </h3>
+                            <span class="text-xs text-slate-400">в этой выборке</span>
+                        </div>
+                        <div class="space-y-2.5 custom-scrollbar max-h-[300px] overflow-y-auto pr-1" id="employers-list">
+                            <!-- Dynamic render -->
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400">
+                        Ранжирование по числу найденных открытых вакансий
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Skill Metrics Table Section -->
+            <section class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 shadow-lg space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
+                    <div>
+                        <h3 class="text-base font-semibold text-white flex items-center gap-2">
+                            <i data-lucide="table" class="w-5 h-5 text-emerald-400"></i> Сводная таблица ключевых навыков
+                        </h3>
+                        <p class="text-xs text-slate-400">Анализ распространенности технологий и средних зарплатных вилок</p>
+                    </div>
+
+                    <!-- Table Search & Min N Toggle -->
+                    <div class="flex items-center gap-3">
+                        <label class="inline-flex items-center cursor-pointer text-xs text-slate-300 gap-2 bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800">
+                            <input type="checkbox" id="min-n-toggle" checked class="rounded bg-slate-900 border-slate-700 text-indigo-600 focus:ring-0">
+                            <span>N ≥ 3</span>
+                        </label>
+                        <div class="relative w-full sm:w-56">
+                            <input type="text" id="skill-search" placeholder="Поиск навыка..." class="w-full bg-slate-950 border border-slate-800 text-slate-100 text-xs rounded-xl pl-8 pr-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                            <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left text-xs text-slate-300">
+                        <thead class="bg-slate-950 uppercase text-[10px] text-slate-400 tracking-wider">
+                            <tr>
+                                <th class="py-3 px-4 rounded-l-lg">Технология / Навык</th>
+                                <th class="py-3 px-4">Кол-во вакансий</th>
+                                <th class="py-3 px-4">Доля от выборки</th>
+                                <th class="py-3 px-4">Репрезентативность</th>
+                                <th class="py-3 px-4">Медианная ЗП по навыку</th>
+                                <th class="py-3 px-4 rounded-r-lg">Надежность метрики</th>
+                            </tr>
+                        </thead>
+                        <tbody id="skills-table-body" class="divide-y divide-slate-800/60 font-mono">
+                            <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- TAB 2: VACANCIES EXPLORER TABLE -->
+        <div id="tab-content-vacancies" class="hidden space-y-4">
+            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 shadow-lg space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                    <div>
+                        <h3 class="text-base font-semibold text-white flex items-center gap-2">
+                            <i data-lucide="database" class="w-5 h-5 text-indigo-400"></i> Загруженные вакансии (Trudvsem)
+                        </h3>
+                        <p class="text-xs text-slate-400">Просмотр исходных записей с фильтрацией</p>
+                    </div>
+                    <div class="relative w-full sm:w-72">
+                        <input type="text" id="vacancy-search-input" placeholder="Поиск по названию или компании..." class="w-full bg-slate-950 border border-slate-800 text-slate-100 text-xs rounded-xl pl-8 pr-3 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                        <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5"></i>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left text-xs text-slate-300">
+                        <thead class="bg-slate-950 uppercase text-[10px] text-slate-400 tracking-wider">
+                            <tr>
+                                <th class="py-3 px-4 rounded-l-lg">Вакансия</th>
+                                <th class="py-3 px-4">Компания</th>
+                                <th class="py-3 px-4">Зарплатная вилка</th>
+                                <th class="py-3 px-4">Город / Формат</th>
+                                <th class="py-3 px-4">Опыт</th>
+                                <th class="py-3 px-4 rounded-r-lg">Ссылка</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vacancies-table-body" class="divide-y divide-slate-800/60">
+                            <!-- Dynamic Vacancies List -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: PYTHON ETL CODE GENERATOR -->
+        <div id="tab-content-python" class="hidden space-y-4">
+            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 shadow-lg space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <div>
+                        <h3 class="text-base font-semibold text-white flex items-center gap-2">
+                            <i data-lucide="terminal" class="w-5 h-5 text-emerald-400"></i> Автономный Python Скрипт (ETL: Trudvsem → JSON/CSV/Parquet)
+                        </h3>
+                    </div>
+                    <button onclick="copyPythonScript()" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-medium transition flex items-center gap-1.5 shadow">
+                        <i data-lucide="copy" class="w-3.5 h-3.5"></i> Скопировать код
+                    </button>
+                </div>
+
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 overflow-x-auto text-xs font-mono text-slate-300">
+<pre id="python-code-block" class="custom-scrollbar max-h-[500px]"><code># ==============================================================================
+# Job Market Radar — Python Scraper & ETL Pipeline for Trudvsem API
+# Requirements: pip install requests pandas pyarrow
+# Запуск: python -m src.collect
+# ==============================================================================
+
+from __future__ import annotations
+
+import json
+import logging
+import re
+import time
+from pathlib import Path
+
+import pandas as pd
+import requests
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+
+BASE_URL = "https://opendata.trudvsem.ru/api/v1/vacancies"
+HEADERS = {"User-Agent": "JobMarketRadar/1.0"}
+
+DATA_DIR = Path("data")
+JSON_FILE = DATA_DIR / "latest.json"
+CSV_FILE = DATA_DIR / "latest.csv"
+PARQUET_FILE = DATA_DIR / "latest.parquet"
+
+MAX_PAGES = 10
+PER_PAGE = 100
+DELAY = 0.5
+
+DEFAULT_ROLES = ["Python Developer", "Frontend Developer", "Data Engineer", "DevOps", "QA Automation"]
+
+KNOWN_SKILLS = [
+    "Python", "JavaScript", "TypeScript", "Java", "C++", "C#", "Go", "Golang",
+    "Rust", "PHP", "Ruby", "Kotlin", "Swift", "Scala",
+    "SQL", "PostgreSQL", "MySQL", "MongoDB", "Redis", "ClickHouse",
+    "Docker", "Kubernetes", "K8s", "Linux", "Bash", "Git", "CI/CD",
+    "Ansible", "Terraform", "Jenkins",
+    "React", "Vue", "Angular", "Node.js", "Django", "FastAPI", "Flask",
+    "HTML", "CSS", "REST", "GraphQL", "gRPC",
+    "Kafka", "RabbitMQ", "Airflow", "Spark", "Hadoop",
+    "PyTest", "Selenium", "Playwright",
+    "AWS", "Azure", "GCP", "Asyncio",
+]
+
+
+def extract_skills(text: str) -> list[str]:
+    if not text:
+        return []
+    found = set()
+    for skill in KNOWN_SKILLS:
+        pattern = r"(?<![A-Za-zА-Яа-я])" + re.escape(skill) + r"(?![A-Za-zА-Яа-я])"
+        if re.search(pattern, text, re.IGNORECASE):
+            found.add(skill)
+    return sorted(found)
+
+
+def detect_schedule(name: str, description: str) -> str:
+    blob = f"{name or ''} {description or ''}".lower()
+    if "удален" in blob or "remote" in blob or "дистанц" in blob:
+        return "remote"
+    if "гибк" in blob:
+        return "flexible"
+    return "fullDay"
+
+
+def average_salary(sal_min, sal_max):
+    vals = [int(x) for x in (sal_min, sal_max) if x]
+    return sum(vals) // len(vals) if vals else None
+
+
+def normalize_vacancy(v: dict, role_name: str) -> dict:
+    company = v.get("company") or {}
+    region = v.get("region") or {}
+    requirement = v.get("requirement") or {}
+    name = v.get("job-name") or v.get("job_name") or ""
+
+    duty = v.get("duty") or ""
+    qualification = requirement.get("qualification") or ""
+    description_text = f"{duty}\n{qualification}"
+
+    skills = extract_skills(f"{name}\n{description_text}")
+    schedule = detect_schedule(name, description_text)
+
+    experience = "Не указано"
+    exp_field = requirement.get("experience")
+    if isinstance(exp_field, dict):
+        experience = exp_field.get("name") or experience
+    elif isinstance(exp_field, str) and exp_field.strip():
+        experience = exp_field
+
+    return {
+        "id": v.get("id"),
+        "name": name,
+        "role_name": role_name,
+        "employer": company.get("name") or "Не указан",
+        "area": region.get("name") or "Не указан",
+        "sal_rub": average_salary(v.get("salary_min"), v.get("salary_max")),
+        "schedule": schedule,
+        "experience": experience,
+        "skills": skills,
+        "url": v.get("vac_url") or "",
+        "source": "trudvsem",
+    }
+
+
+def fetch_role(role: str) -> list[dict]:
+    vacancies = []
+    for page in range(MAX_PAGES):
+        params = {"text": role, "limit": PER_PAGE, "offset": page * PER_PAGE}
+        try:
+            r = requests.get(BASE_URL, headers=HEADERS, params=params, timeout=60)
+            r.raise_for_status()
+            data = r.json()
+        except Exception as e:
+            logging.error(f"[{role}] ошибка запроса стр.{page}: {e}")
+            break
+
+        if str(data.get("status")) != "200":
+            break
+
+        raw = (data.get("results") or {}).get("vacancies") or []
+        if not raw:
+            break
+
+        for item in raw:
+            v = item.get("vacancy") or {}
+            norm = normalize_vacancy(v, role)
+            if norm["id"]:
+                vacancies.append(norm)
+
+        logging.info(f"[{role}] стр.{page + 1}: +{len(raw)} (итого {len(vacancies)})")
+
+        if len(raw) < PER_PAGE:
+            break
+        time.sleep(DELAY)
+
+    return vacancies
+
+
+def save_results(vacancies: list[dict]) -> None:
+    DATA_DIR.mkdir(exist_ok=True)
+    JSON_FILE.write_text(json.dumps(vacancies, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    df = pd.DataFrame(vacancies)
+    if "skills" in df.columns:
+        df_csv = df.copy()
+        df_csv["skills"] = df_csv["skills"].apply(
+            lambda x: json.dumps(x, ensure_ascii=False) if isinstance(x, list) else "[]"
+        )
+        df_csv.to_csv(CSV_FILE, index=False)
+
+    df.to_parquet(PARQUET_FILE, index=False)
+
+
+def main() -> None:
+    all_v = []
+    for role in DEFAULT_ROLES:
+        logging.info(f"→ Роль: {role}")
+        all_v.extend(fetch_role(role))
+
+    seen = set()
+    unique = []
+    for v in all_v:
+        if v["id"] not in seen:
+            seen.add(v["id"])
+            unique.append(v)
+
+    save_results(unique)
+    logging.info(f"✅ Итого {len(unique)} уникальных вакансий сохранено.")
+
+
+if __name__ == "__main__":
+    main()
+</code></pre>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer with Mandatory Disclaimers -->
+    <footer class="bg-slate-950 border-t border-slate-900 mt-8 py-6 text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3 text-center sm:text-left">
+            <div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300/90 flex flex-col sm:flex-row items-center gap-3">
+                <i data-lucide="alert-triangle" class="w-5 h-5 shrink-0 text-amber-400"></i>
+                <p class="text-[11px] leading-relaxed">
+                    <strong>Дисклеймер:</strong> Аналитический инструмент агрегирует данные из открытого API портала «Работа России» (opendata.trudvsem.ru). Навыки извлекаются эвристически из текста описаний и могут быть неполными. Медианные значения вычисляются строго по объектам с известной зарплатной вилкой. Навыки пересекаются и не суммируются напрямую.
+                </p>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-2 pt-2 text-[11px] text-slate-500">
+                <div>© 2026 Job Market Radar — Аналитический слой поверх Trudvsem API</div>
+                <div class="flex items-center gap-4">
+                    <span>Local Node | Chart.js Engine | Trudvsem REST API v1</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        // --- State Management ---
+        let currentMode = 'live'; // 'live' or 'mock'
+        let currentVacancies = [];
+        let aggregatedSkills = [];
+        let aggregatedEmployers = [];
+        let skillsChartInstance = null;
+
+        // --- Mock Fallback Dataset ---
+        const MOCK_DATASET = [
+            { id: "101", name: "Senior Python Developer", employer: "Яндекс", area: "Москва", sal_rub: 280000, schedule: "remote", experience: "От 3 до 6 лет", skills: ["Python", "PostgreSQL", "Asyncio", "Docker", "FastAPI"], url: "https://trudvsem.ru" },
+            { id: "102", name: "Backend Python Engineer", employer: "Сбер", area: "Москва", sal_rub: 230000, schedule: "fullDay", experience: "От 1 года до 3 лет", skills: ["Python", "Django", "PostgreSQL", "Docker", "REST API"], url: "https://trudvsem.ru" },
+            { id: "103", name: "Lead Data Engineer", employer: "Т-Банк", area: "Санкт-Петербург", sal_rub: 340000, schedule: "remote", experience: "Более 6 лет", skills: ["Python", "SQL", "Airflow", "ClickHouse", "Kafka", "Spark"], url: "https://trudvsem.ru" },
+            { id: "104", name: "Middle Python / FastAPI", employer: "Ozon", area: "Москва", sal_rub: 210000, schedule: "remote", experience: "От 1 года до 3 лет", skills: ["Python", "FastAPI", "Redis", "Docker", "Git"], url: "https://trudvsem.ru" },
+            { id: "105", name: "DevOps Engineer (K8s)", employer: "VK", area: "Москва", sal_rub: 290000, schedule: "fullDay", experience: "От 3 до 6 лет", skills: ["Docker", "Kubernetes", "Linux", "CI/CD", "Ansible", "Python"], url: "https://trudvsem.ru" },
+            { id: "106", name: "Python Tech Lead", employer: "Авито", area: "Москва", sal_rub: 380000, schedule: "remote", experience: "Более 6 лет", skills: ["Python", "PostgreSQL", "Asyncio", "Kubernetes", "Kafka"], url: "https://trudvsem.ru" },
+            { id: "107", name: "Junior Python Developer", employer: "Иннотех", area: "Казань", sal_rub: 90000, schedule: "fullDay", experience: "Без опыта", skills: ["Python", "Git", "SQL", "Django"], url: "https://trudvsem.ru" },
+            { id: "108", name: "QA Automation Engineer (Python)", employer: "Альфа-Банк", area: "Москва", sal_rub: 190000, schedule: "remote", experience: "От 1 года до 3 лет", skills: ["Python", "PyTest", "REST API", "Git", "Docker"], url: "https://trudvsem.ru" }
+        ];
+
+        // --- DOM Elements ---
+        const searchQueryInput = document.getElementById('search-query-input');
+        const presetSelect = document.getElementById('preset-select');
+        const regionSelect = document.getElementById('region-select');
+        const expSelect = document.getElementById('exp-select');
+        const fetchDataBtn = document.getElementById('fetch-data-btn');
+        const btnSpinIcon = document.getElementById('btn-spin-icon');
+        const btnText = document.getElementById('btn-text');
+        const progressContainer = document.getElementById('progress-container');
+        const progressBarFill = document.getElementById('progress-bar-fill');
+        const progressStatusText = document.getElementById('progress-status-text');
+        const progressPctText = document.getElementById('progress-pct-text');
+        const modeLiveBtn = document.getElementById('mode-live-btn');
+        const modeMockBtn = document.getElementById('mode-mock-btn');
+
+        // --- Initialize App ---
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            setupEventListeners();
+            initialLoad();
+        });
+
+        // Автозагрузка при старте: если снапшот уже есть — показать без нового сбора
+        async function initialLoad() {
+            try {
+                const res = await fetch('/api/vacancies?t=' + Date.now());
+                if (res.ok) {
+                    const raw = await res.json();
+                    if (Array.isArray(raw) && raw.length > 0) {
+                        currentVacancies = applyFilters(raw);
+                        processAndRenderData();
+                        showToast(`Загружено ${raw.length} вакансий из локального снапшота`);
+                        return;
+                    }
+                }
+            } catch (_) { /* игнорируем, пойдём собирать */ }
+
+            // Снапшота нет — запускаем полный сбор
+            triggerDataFetch();
+        }
+
+        function setupEventListeners() {
+            fetchDataBtn.addEventListener('click', triggerDataFetch);
+            presetSelect.addEventListener('change', (e) => {
+                if (e.target.value) {
+                    searchQueryInput.value = e.target.value;
+                    triggerDataFetch();
+                }
+            });
+
+            modeLiveBtn.addEventListener('click', () => setMode('live'));
+            modeMockBtn.addEventListener('click', () => setMode('mock'));
+
+            document.getElementById('min-n-toggle').addEventListener('change', renderSkillsTable);
+            document.getElementById('skill-search').addEventListener('input', renderSkillsTable);
+            document.getElementById('vacancy-search-input').addEventListener('input', renderVacanciesTable);
+            document.getElementById('reset-filters').addEventListener('click', () => {
+                searchQueryInput.value = "Python Developer";
+                regionSelect.value = "113";
+                expSelect.value = "all";
+                triggerDataFetch();
+            });
+
+            // Перефильтрация без перезапроса данных
+            searchQueryInput.addEventListener('change', () => {
+                if (currentMode === 'mock') triggerDataFetch();
+            });
+            regionSelect.addEventListener('change', () => {
+                if (currentMode === 'mock') triggerDataFetch();
+            });
+            expSelect.addEventListener('change', () => {
+                if (currentMode === 'mock') triggerDataFetch();
+            });
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            if (mode === 'live') {
+                modeLiveBtn.className = "px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1.5 bg-indigo-600 text-white shadow";
+                modeMockBtn.className = "px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5";
+                document.getElementById('data-source-badge').innerHTML = 'Источник: <strong class="text-indigo-400">opendata.trudvsem.ru</strong>';
+                showToast("Переключено в режим Live Trudvsem");
+            } else {
+                modeMockBtn.className = "px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1.5 bg-indigo-600 text-white shadow";
+                modeLiveBtn.className = "px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition flex items-center gap-1.5";
+                document.getElementById('data-source-badge').innerHTML = 'Источник: <strong class="text-amber-400">Локальный Демо-Кэш</strong>';
+                showToast("Переключено в режим Демо-Кэша");
+            }
+            triggerDataFetch();
+        }
+
+        // === ОСНОВНОЙ СБОР ДАННЫХ ===
+        // Live-режим: обращается к локальному серверу (server.py), который:
+        //   1) POST /api/collect   — запускает сбор с Trudvsem
+        //   2) GET  /api/status    — отдаёт прогресс
+        //   3) GET  /api/vacancies — отдаёт готовый JSON
+        async function triggerDataFetch() {
+            setLoading(true);
+
+            if (currentMode === 'mock') {
+                setTimeout(() => {
+                    currentVacancies = applyFilters(MOCK_DATASET);
+                    processAndRenderData();
+                    setLoading(false);
+                    showToast("Загружено из кэша: " + currentVacancies.length + " вакансий");
+                }, 300);
+                return;
+            }
+
+            try {
+                updateProgress(5, "Запрос на сбор данных с Trudvsem...");
+
+                const startRes = await fetch('/api/collect', { method: 'POST' });
+                if (startRes.status === 409) {
+                    showToast("Сбор уже идёт, подождите...");
+                } else if (!startRes.ok) {
+                    throw new Error(`Не удалось запустить сбор: HTTP ${startRes.status}`);
+                }
+
+                // Опрос статуса, пока сервер собирает
+                let pct = 10;
+                // eslint-disable-next-line no-constant-condition
+                while (true) {
+                    await new Promise(r => setTimeout(r, 1500));
+                    pct = Math.min(pct + 3, 90);
+                    updateProgress(pct, "Собираем вакансии с Trudvsem...");
+
+                    const statusRes = await fetch('/api/status');
+                    const st = await statusRes.json();
+
+                    if (!st.running) {
+                        updateProgress(95, st.message || "Готово");
+                        break;
+                    }
+                }
+
+                // Читаем результат
+                const dataRes = await fetch('/api/vacancies?t=' + Date.now());
+                if (!dataRes.ok) throw new Error(`HTTP ${dataRes.status}`);
+                const raw = await dataRes.json();
+
+                if (!Array.isArray(raw) || raw.length === 0) {
+                    throw new Error("Сервер вернул пустой список");
+                }
+
+                currentVacancies = applyFilters(raw);
+                updateProgress(100, "Готово!");
+                processAndRenderData();
+                showToast(`Загружено ${currentVacancies.length} вакансий (Trudvsem)`);
+
+            } catch (error) {
+                console.error("Fetch error:", error);
+                showToast("Ошибка: " + error.message + ". Использую демо-кэш.", true);
+                currentVacancies = applyFilters(MOCK_DATASET);
+                processAndRenderData();
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        // Клиентская фильтрация: применяется к уже загруженному массиву вакансий
+        function applyFilters(vacancies) {
+            const query = (searchQueryInput.value || "").trim().toLowerCase();
+            const areaId = regionSelect.value;
+            const expId = expSelect.value;
+
+            const AREA_MAP = {
+                "1": "Москва",
+                "2": "Санкт-Петербург",
+                "160": "Казахстан",
+            };
+            const EXP_MAP = {
+                "noExperience": "Без опыта",
+                "between1And3": "От 1 года до 3 лет",
+                "between3And6": "От 3 до 6 лет",
+                "moreThan6": "Более 6 лет",
+            };
+
+            return vacancies.filter(v => {
+                if (query) {
+                    const blob = `${v.name} ${v.employer} ${v.role_name || ""}`.toLowerCase();
+                    if (!blob.includes(query)) return false;
+                }
+                if (areaId && areaId !== "113" && areaId !== "1001") {
+                    const target = AREA_MAP[areaId];
+                    if (target && !(v.area || "").toLowerCase().includes(target.toLowerCase())) return false;
+                }
+                if (expId && expId !== "all") {
+                    const target = EXP_MAP[expId];
+                    if (target) {
+                        const vExp = (v.experience || "").toLowerCase();
+                        // Не отсекаем жёстко, если опыт не указан
+                        if (vExp && vExp !== "не указано" && !vExp.includes(target.toLowerCase())) {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            });
+        }
+
+        // Helper regex technique for skill extraction fallback
+        function extractSkillsFromText(text) {
+            const knownTechs = ["Python", "Docker", "PostgreSQL", "Git", "SQL", "Linux", "FastAPI", "Django", "Kubernetes", "Kafka", "Redis", "React", "TypeScript", "JavaScript", "Asyncio", "PyTest", "REST API", "CI/CD", "Ansible"];
+            const found = [];
+            knownTechs.forEach(t => {
+                if (new RegExp(`\\b${t}\\b`, 'i').test(text)) {
+                    found.push(t);
+                }
+            });
+            return found;
+        }
+
+        function processAndRenderData() {
+            const N = currentVacancies.length;
+            const vacanciesWithSalary = currentVacancies.filter(v => v.sal_rub !== null && v.sal_rub > 0);
+            const disclosedPct = N > 0 ? Math.round((vacanciesWithSalary.length / N) * 100) : 0;
+
+            // Median Salary Calculation
+            let medianSalary = 0;
+            let avgSalary = 0;
+            if (vacanciesWithSalary.length > 0) {
+                const salaries = vacanciesWithSalary.map(v => v.sal_rub).sort((a, b) => a - b);
+                const mid = Math.floor(salaries.length / 2);
+                medianSalary = salaries.length % 2 !== 0 ? salaries[mid] : Math.round((salaries[mid - 1] + salaries[mid]) / 2);
+                avgSalary = Math.round(salaries.reduce((acc, curr) => acc + curr, 0) / salaries.length);
+            }
+
+            // Remote Share
+            const remoteVacancies = currentVacancies.filter(v => v.schedule === 'remote');
+            const remotePct = N > 0 ? ((remoteVacancies.length / N) * 100).toFixed(1) : 0;
+
+            // Aggregating Skills
+            const skillCounts = {};
+            const skillSalaries = {};
+
+            currentVacancies.forEach(v => {
+                (v.skills || []).forEach(s => {
+                    const skillName = standardizeSkillName(s);
+                    skillCounts[skillName] = (skillCounts[skillName] || 0) + 1;
+                    if (v.sal_rub) {
+                        if (!skillSalaries[skillName]) skillSalaries[skillName] = [];
+                        skillSalaries[skillName].push(v.sal_rub);
+                    }
+                });
+            });
+
+            aggregatedSkills = Object.keys(skillCounts).map(name => {
+                const count = skillCounts[name];
+                const sals = skillSalaries[name] || [];
+                let med = 0;
+                if (sals.length > 0) {
+                    sals.sort((a, b) => a - b);
+                    const mid = Math.floor(sals.length / 2);
+                    med = sals.length % 2 !== 0 ? sals[mid] : Math.round((sals[mid - 1] + sals[mid]) / 2);
+                }
+                return {
+                    name,
+                    count,
+                    share: N > 0 ? count / N : 0,
+                    n: count,
+                    median: med
+                };
+            }).sort((a, b) => b.count - a.count);
+
+            // Aggregating Employers
+            const empCounts = {};
+            currentVacancies.forEach(v => {
+                empCounts[v.employer] = (empCounts[v.employer] || 0) + 1;
+            });
+            aggregatedEmployers = Object.keys(empCounts).map(emp => ({
+                name: emp,
+                count: empCounts[emp]
+            })).sort((a, b) => b.count - a.count).slice(0, 7);
+
+            // Render KPI Updates
+            document.getElementById('kpi-sample-size').textContent = N;
+            document.getElementById('kpi-salary-disclosed').textContent = `${disclosedPct}%`;
+            document.getElementById('kpi-median-salary').textContent = `${medianSalary.toLocaleString('ru-RU')} ₽`;
+            document.getElementById('kpi-mean-salary').textContent = `${avgSalary.toLocaleString('ru-RU')} ₽`;
+            document.getElementById('kpi-remote-share').textContent = `${remotePct}%`;
+
+            const topSkill = aggregatedSkills[0];
+            if (topSkill) {
+                document.getElementById('kpi-top-skill').textContent = topSkill.name;
+                document.getElementById('kpi-top-skill-share').textContent = `${(topSkill.share * 100).toFixed(1)}%`;
+            } else {
+                document.getElementById('kpi-top-skill').textContent = "—";
+                document.getElementById('kpi-top-skill-share').textContent = "0%";
+            }
+
+            document.getElementById('tab-vacancies-count').textContent = N;
+
+            // Render Visuals
+            renderEmployersList();
+            renderChart();
+            renderSkillsTable();
+            renderVacanciesTable();
+        }
+
+        function standardizeSkillName(name) {
+            const lower = name.trim();
+            if (/postgres/i.test(lower)) return "PostgreSQL";
+            if (/python/i.test(lower)) return "Python";
+            if (/docker/i.test(lower)) return "Docker";
+            if (/fastapi/i.test(lower)) return "FastAPI";
+            if (/django/i.test(lower)) return "Django";
+            if (/kubernetes|k8s/i.test(lower)) return "Kubernetes";
+            return name.trim();
+        }
+
+        function renderEmployersList() {
+            const container = document.getElementById('employers-list');
+            container.innerHTML = '';
+
+            if (aggregatedEmployers.length === 0) {
+                container.innerHTML = '<div class="text-xs text-slate-500 py-4 text-center">Нет данных по работодателям</div>';
+                return;
+            }
+
+            aggregatedEmployers.forEach(emp => {
+                const div = document.createElement('div');
+                div.className = 'flex items-center justify-between p-2.5 bg-slate-950/60 rounded-xl border border-slate-800/80 hover:border-slate-700 transition';
+                const char = emp.name.charAt(0).toUpperCase();
+                div.innerHTML = `
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-7 h-7 rounded-lg bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 font-bold flex items-center justify-center text-xs">
+                            ${char}
+                        </div>
+                        <div class="text-xs font-semibold text-white truncate max-w-[140px]">${emp.name}</div>
+                    </div>
+                    <span class="text-xs font-mono font-bold text-indigo-300 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">${emp.count}</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderChart() {
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            const top12 = aggregatedSkills.slice(0, 12);
+
+            const labels = top12.map(s => s.name);
+            const shares = top12.map(s => (s.share * 100).toFixed(1));
+
+            if (skillsChartInstance) {
+                skillsChartInstance.destroy();
+            }
+
+            skillsChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Востребованность (%)',
+                        data: shares,
+                        backgroundColor: 'rgba(99, 102, 241, 0.75)',
+                        borderColor: 'rgba(129, 140, 248, 1)',
+                        borderWidth: 1.5,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => ` Доля: ${ctx.raw}% вакансий`
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(51, 65, 85, 0.2)' },
+                            ticks: { color: '#94a3b8', font: { size: 10 } }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(51, 65, 85, 0.2)' },
+                            ticks: {
+                                color: '#94a3b8',
+                                callback: (v) => v + '%'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderSkillsTable() {
+            const tbody = document.getElementById('skills-table-body');
+            tbody.innerHTML = '';
+
+            const minN = document.getElementById('min-n-toggle').checked;
+            const query = document.getElementById('skill-search').value.toLowerCase();
+
+            let list = aggregatedSkills;
+            if (minN) list = list.filter(s => s.n >= 3);
+            if (query) list = list.filter(s => s.name.toLowerCase().includes(query));
+
+            if (list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="py-6 text-center text-slate-500">Навыки не найдены</td></tr>';
+                return;
+            }
+
+            list.forEach(s => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-900/60 transition';
+                const isReliable = s.n >= 5;
+
+                tr.innerHTML = `
+                    <td class="py-2.5 px-4 font-semibold text-white">${s.name}</td>
+                    <td class="py-2.5 px-4 text-slate-300">${s.count}</td>
+                    <td class="py-2.5 px-4 text-indigo-300">${(s.share * 100).toFixed(1)}%</td>
+                    <td class="py-2.5 px-4 text-slate-400">N = ${s.n}</td>
+                    <td class="py-2.5 px-4 text-emerald-400 font-bold">${s.median > 0 ? s.median.toLocaleString('ru-RU') + ' ₽' : '—'}</td>
+                    <td class="py-2.5 px-4">
+                        ${isReliable
+                            ? '<span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20">Надежно</span>'
+                            : '<span class="text-[10px] bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded border border-amber-500/20">Мало N</span>'}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderVacanciesTable() {
+            const tbody = document.getElementById('vacancies-table-body');
+            tbody.innerHTML = '';
+
+            const query = document.getElementById('vacancy-search-input').value.toLowerCase();
+            let list = currentVacancies;
+            if (query) {
+                list = list.filter(v => v.name.toLowerCase().includes(query) || v.employer.toLowerCase().includes(query));
+            }
+
+            if (list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="py-6 text-center text-slate-500">Вакансии не найдены</td></tr>';
+                return;
+            }
+
+            list.forEach(v => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-900/60 transition text-xs';
+                tr.innerHTML = `
+                    <td class="py-3 px-4 font-medium text-white max-w-xs truncate">${v.name}</td>
+                    <td class="py-3 px-4 text-slate-300">${v.employer}</td>
+                    <td class="py-3 px-4 font-mono ${v.sal_rub ? 'text-emerald-400 font-semibold' : 'text-slate-500'}">
+                        ${v.sal_rub ? v.sal_rub.toLocaleString('ru-RU') + ' ₽' : 'Не указана'}
+                    </td>
+                    <td class="py-3 px-4 text-slate-400">${v.area} (${v.schedule})</td>
+                    <td class="py-3 px-4 text-slate-400">${v.experience}</td>
+                    <td class="py-3 px-4">
+                        <a href="${v.url}" target="_blank" class="text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                            Открыть <i data-lucide="external-link" class="w-3 h-3"></i>
+                        </a>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            lucide.createIcons();
+        }
+
+        // --- Helper UI Functions ---
+        function switchTab(tabName) {
+            ['overview', 'vacancies', 'python'].forEach(t => {
+                document.getElementById(`tab-content-${t}`).classList.add('hidden');
+                document.getElementById(`tab-btn-${t}`).className = "px-4 py-2 text-xs font-semibold rounded-t-xl border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2";
+            });
+
+            document.getElementById(`tab-content-${tabName}`).classList.remove('hidden');
+            document.getElementById(`tab-btn-${tabName}`).className = "px-4 py-2 text-xs font-semibold rounded-t-xl border-b-2 border-indigo-500 text-indigo-400 bg-slate-900 flex items-center gap-2";
+        }
+
+        function setLoading(isLoading) {
+            if (isLoading) {
+                btnSpinIcon.classList.add('animate-spin');
+                btnText.textContent = "Загрузка...";
+                fetchDataBtn.disabled = true;
+                progressContainer.classList.remove('hidden');
+            } else {
+                btnSpinIcon.classList.remove('animate-spin');
+                btnText.textContent = "Собрать данные";
+                fetchDataBtn.disabled = false;
+                setTimeout(() => progressContainer.classList.add('hidden'), 1000);
+            }
+        }
+
+        function updateProgress(pct, statusMsg) {
+            progressBarFill.style.width = `${pct}%`;
+            progressPctText.textContent = `${pct}%`;
+            progressStatusText.textContent = statusMsg;
+        }
+
+        function showToast(message, isError = false) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `p-3 rounded-xl border text-xs shadow-xl flex items-center justify-between gap-3 transition-all transform duration-300 ${
+                isError
+                    ? 'bg-rose-950/90 border-rose-800 text-rose-200'
+                    : 'bg-slate-900/90 border-slate-700 text-slate-100'
+            }`;
+            toast.innerHTML = `
+                <div class="flex items-center gap-2">
+                    <i data-lucide="${isError ? 'alert-circle' : 'check-circle-2'}" class="w-4 h-4 text-${isError ? 'rose' : 'emerald'}-400"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            container.appendChild(toast);
+            lucide.createIcons();
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        function exportToCSV() {
+            if (currentVacancies.length === 0) return showToast("Нет данных для экспорта", true);
+            const headers = ["id", "name", "employer", "area", "salary_rub", "schedule", "experience", "url"];
+            const rows = currentVacancies.map(v => [
+                v.id, `"${(v.name || "").replace(/"/g, '""')}"`, `"${(v.employer || "").replace(/"/g, '""')}"`,
+                `"${v.area}"`, v.sal_rub || "", v.schedule, `"${v.experience}"`, v.url
+            ]);
+            const csvContent = "data:text/csv;charset=utf-8,\uFEFF" + [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `trudvsem_vacancies_export.csv`);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            showToast("Экспорт в CSV выполнен!");
+        }
+
+        function exportToJSON() {
+            if (currentVacancies.length === 0) return showToast("Нет данных для экспорта", true);
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentVacancies, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "trudvsem_vacancies_export.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast("Экспорт в JSON выполнен!");
+        }
+
+        function copyPythonScript() {
+            const code = document.getElementById('python-code-block').innerText;
+            const textarea = document.createElement('textarea');
+            textarea.value = code;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showToast("Python скрипт скопирован в буфер обмена!");
+        }
+    </script>
+</body>
+</html>
