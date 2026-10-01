@@ -297,6 +297,19 @@
     "source": "trudvsem"
   },
   {
+    "id": "d7802aa8-a5e9-11f1-8a32-2b6903e6a9c2",
+    "name": "DevOps инженер",
+    "role_name": "DevOps",
+    "employer": "ООО \"АЛФАВИТ\"",
+    "area": "Самарская область",
+    "sal_rub": 110000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/1236300022970/d7802aa8-a5e9-11f1-8a32-2b6903e6a9c2",
+    "source": "trudvsem"
+  },
+  {
     "id": "a1712469-7ad7-11f1-be4b-5ffb8b1668a9",
     "name": "DevOps инженер",
     "role_name": "DevOps",
@@ -359,19 +372,6 @@
     "source": "trudvsem"
   },
   {
-    "id": "d7802aa8-a5e9-11f1-8a32-2b6903e6a9c2",
-    "name": "DevOps инженер",
-    "role_name": "DevOps",
-    "employer": "ООО \"АЛФАВИТ\"",
-    "area": "Самарская область",
-    "sal_rub": 110000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [],
-    "url": "https://trudvsem.ru/vacancy/card/1236300022970/d7802aa8-a5e9-11f1-8a32-2b6903e6a9c2",
-    "source": "trudvsem"
-  },
-  {
     "id": "e5037688-2cdd-11f1-a3e3-e78cce9ac03b",
     "name": "DevOps инженер",
     "role_name": "DevOps",
@@ -417,6 +417,22 @@
     "source": "trudvsem"
   },
   {
+    "id": "d39f6c18-6086-11f0-bc81-cb26dff57dd7",
+    "name": "Программист",
+    "role_name": "DevOps",
+    "employer": "ООО \"ИНВОЛЬТА\"",
+    "area": "Ивановская область",
+    "sal_rub": 62500,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "CI/CD",
+      "Vue"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/1103702023402/d39f6c18-6086-11f0-bc81-cb26dff57dd7",
+    "source": "trudvsem"
+  },
+  {
     "id": "31f9e044-b5ba-11f1-9bdb-99b71d03405f",
     "name": "DevOps-инженер в команду поддержки Data-платформ",
     "role_name": "DevOps",
@@ -435,22 +451,6 @@
       "Python"
     ],
     "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/31f9e044-b5ba-11f1-9bdb-99b71d03405f",
-    "source": "trudvsem"
-  },
-  {
-    "id": "d39f6c18-6086-11f0-bc81-cb26dff57dd7",
-    "name": "Программист",
-    "role_name": "DevOps",
-    "employer": "ООО \"ИНВОЛЬТА\"",
-    "area": "Ивановская область",
-    "sal_rub": 62500,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "CI/CD",
-      "Vue"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/1103702023402/d39f6c18-6086-11f0-bc81-cb26dff57dd7",
     "source": "trudvsem"
   },
   {
@@ -656,19 +656,6 @@
     "source": "trudvsem"
   },
   {
-    "id": "011c7658-62f8-11f1-b1a3-adad5cc6cbe1",
-    "name": "Главный архитектор направления по архитектуре и технологиям программы 1С",
-    "role_name": "DevOps",
-    "employer": "ООО \"АЛРОСА ИТ\"",
-    "area": "Город Москва",
-    "sal_rub": 91990,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [],
-    "url": "https://trudvsem.ru/vacancy/card/1195476078258/011c7658-62f8-11f1-b1a3-adad5cc6cbe1",
-    "source": "trudvsem"
-  },
-  {
     "id": "a8010cc8-b5c2-11f1-80a9-795f97aab242",
     "name": "Доцент Факультета информационных технологий и анализа больших данных",
     "role_name": "DevOps",
@@ -681,6 +668,19 @@
       "Python"
     ],
     "url": "https://trudvsem.ru/vacancy/card/1027700451976/a8010cc8-b5c2-11f1-80a9-795f97aab242",
+    "source": "trudvsem"
+  },
+  {
+    "id": "011c7658-62f8-11f1-b1a3-adad5cc6cbe1",
+    "name": "Главный архитектор направления по архитектуре и технологиям программы 1С",
+    "role_name": "DevOps",
+    "employer": "ООО \"АЛРОСА ИТ\"",
+    "area": "Город Москва",
+    "sal_rub": 91990,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/1195476078258/011c7658-62f8-11f1-b1a3-adad5cc6cbe1",
     "source": "trudvsem"
   },
   {
@@ -1440,19 +1440,6 @@
     "source": "trudvsem"
   },
   {
-    "id": "58f02308-019a-11f1-8523-db81a59d8cd5",
-    "name": "Программист программного обеспечения",
-    "role_name": "DevOps",
-    "employer": "ООО \"ПЕРФОМАНС ЛАБ СЕРВИСЕЗ\"",
-    "area": "Удмуртская Республика",
-    "sal_rub": 52500,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [],
-    "url": "https://trudvsem.ru/vacancy/card/1117746950155/58f02308-019a-11f1-8523-db81a59d8cd5",
-    "source": "trudvsem"
-  },
-  {
     "id": "6b6e5b84-bb23-11f1-b63c-790d10f69fe4",
     "name": "SDET / Разработчик AI-решений (HR-платформа)",
     "role_name": "DevOps",
@@ -1513,6 +1500,19 @@
       "PostgreSQL"
     ],
     "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/1aa47ae4-7069-11f1-8254-ffb188e3184a",
+    "source": "trudvsem"
+  },
+  {
+    "id": "58f02308-019a-11f1-8523-db81a59d8cd5",
+    "name": "Программист программного обеспечения",
+    "role_name": "DevOps",
+    "employer": "ООО \"ПЕРФОМАНС ЛАБ СЕРВИСЕЗ\"",
+    "area": "Удмуртская Республика",
+    "sal_rub": 52500,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/1117746950155/58f02308-019a-11f1-8523-db81a59d8cd5",
     "source": "trudvsem"
   },
   {
