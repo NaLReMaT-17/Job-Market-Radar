@@ -1,22 +1,5 @@
 [
   {
-    "id": "ebb63c78-7b8d-11f1-96a1-71ec6ab38b2c",
-    "name": "Инженер данных",
-    "role_name": "Python Developer",
-    "employer": "РОССИЙСКОЕ ОБЩЕСТВО \"ЗНАНИЕ\"",
-    "area": "Город Москва",
-    "sal_rub": 260000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "Airflow",
-      "ClickHouse",
-      "SQL"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/1167700059570/ebb63c78-7b8d-11f1-96a1-71ec6ab38b2c",
-    "source": "trudvsem"
-  },
-  {
     "id": "c0416478-b8d2-11f1-8936-155fc3dbaa44",
     "name": "DevOps инженер",
     "role_name": "Python Developer",
@@ -152,6 +135,19 @@
       "SQL"
     ],
     "url": "https://trudvsem.ru/vacancy/card/1177746245500/213614a3-a7a9-11f1-8d85-6f9b8d7d49f7",
+    "source": "trudvsem"
+  },
+  {
+    "id": "b12026e0-c7ad-11f1-a6f7-8fbfcf4a8b82",
+    "name": "Территориальный менеджер по цифровой трансформации клиентов микро и малого бизнеса",
+    "role_name": "Data Engineer",
+    "employer": "Сбербанк России, ПАО",
+    "area": "Пермский край",
+    "sal_rub": 178000,
+    "schedule": "flexible",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/5147746474134/b12026e0-c7ad-11f1-a6f7-8fbfcf4a8b82",
     "source": "trudvsem"
   },
   {
@@ -584,6 +580,19 @@
     "source": "trudvsem"
   },
   {
+    "id": "011c7658-62f8-11f1-b1a3-adad5cc6cbe1",
+    "name": "Главный архитектор направления по архитектуре и технологиям программы 1С",
+    "role_name": "DevOps",
+    "employer": "ООО \"АЛРОСА ИТ\"",
+    "area": "Город Москва",
+    "sal_rub": 91990,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/1195476078258/011c7658-62f8-11f1-b1a3-adad5cc6cbe1",
+    "source": "trudvsem"
+  },
+  {
     "id": "a8010cc8-b5c2-11f1-80a9-795f97aab242",
     "name": "Доцент Факультета информационных технологий и анализа больших данных",
     "role_name": "DevOps",
@@ -679,6 +688,19 @@
     "experience": "Не указано",
     "skills": [],
     "url": "https://trudvsem.ru/vacancy/card/18319440-b4b7-11ec-bdf7-550ed7335bbe/44227590-7a99-11f1-bfbc-a1d6d860641d",
+    "source": "trudvsem"
+  },
+  {
+    "id": "07d41318-a838-11f1-8a32-2b6903e6a9c2",
+    "name": "Главный эксперт (106047)",
+    "role_name": "DevOps",
+    "employer": "ООО \"АЛРОСА ИТ\"",
+    "area": "Новосибирская область",
+    "sal_rub": 114988,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/1195476078258/07d41318-a838-11f1-8a32-2b6903e6a9c2",
     "source": "trudvsem"
   },
   {
