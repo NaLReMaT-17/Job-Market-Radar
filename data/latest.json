@@ -661,21 +661,6 @@
     "source": "trudvsem"
   },
   {
-    "id": "4d0afcb8-b5c0-11f1-80a9-795f97aab242",
-    "name": "Доцент Факультета информационных технологий и анализа больших данных",
-    "role_name": "DevOps",
-    "employer": "ФИНАНСОВЫЙ УНИВЕРСИТЕТ, ФИНУНИВЕРСИТЕТ",
-    "area": "Город Москва",
-    "sal_rub": 510000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "Python"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/1027700451976/4d0afcb8-b5c0-11f1-80a9-795f97aab242",
-    "source": "trudvsem"
-  },
-  {
     "id": "635918d6-cdee-11f1-b0a1-fd885623013e",
     "name": "ИИ - инженер",
     "role_name": "DevOps",
@@ -705,6 +690,21 @@
       "gRPC"
     ],
     "url": "https://trudvsem.ru/vacancy/card/1023501237330/d5c6a648-cd66-11f1-8a66-cf4c2450ca83",
+    "source": "trudvsem"
+  },
+  {
+    "id": "4d0afcb8-b5c0-11f1-80a9-795f97aab242",
+    "name": "Доцент Факультета информационных технологий и анализа больших данных",
+    "role_name": "DevOps",
+    "employer": "ФИНАНСОВЫЙ УНИВЕРСИТЕТ, ФИНУНИВЕРСИТЕТ",
+    "area": "Город Москва",
+    "sal_rub": 510000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "Python"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/1027700451976/4d0afcb8-b5c0-11f1-80a9-795f97aab242",
     "source": "trudvsem"
   },
   {
@@ -1756,29 +1756,6 @@
       "SQL"
     ],
     "url": "https://trudvsem.ru/vacancy/card/319265100084137/ce7eb446-bcc7-11f1-9dff-97d306130813",
-    "source": "trudvsem"
-  },
-  {
-    "id": "5357e8e8-b7e5-11f1-adb0-c78f30a32c76",
-    "name": "QA‐инженер (Automation QA Engineer)",
-    "role_name": "QA Automation",
-    "employer": "ООО \"Датаворкс\"",
-    "area": "Новосибирская область",
-    "sal_rub": 130000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "Angular",
-      "CI/CD",
-      "HTML",
-      "JavaScript",
-      "Next.js",
-      "REST",
-      "REST API",
-      "React",
-      "Vue"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/1055473052910/5357e8e8-b7e5-11f1-adb0-c78f30a32c76",
     "source": "trudvsem"
   },
   {
