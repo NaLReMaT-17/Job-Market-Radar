@@ -830,19 +830,6 @@
     "source": "trudvsem"
   },
   {
-    "id": "8486ffd8-7f7f-11f1-8ec3-4d99c9c3a123",
-    "name": "Инженер ИТ",
-    "role_name": "DevOps",
-    "employer": "ФИЛИАЛ АО \"КОНЦЕРН РОСЭНЕРГОАТОМ\" \"НОВОВОРОНЕЖСКАЯ АТОМНАЯ СТАНЦИЯ\"",
-    "area": "Воронежская область",
-    "sal_rub": 110000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [],
-    "url": "https://trudvsem.ru/vacancy/card/d2681090-7dfc-11ee-8f72-d549be31d974/8486ffd8-7f7f-11f1-8ec3-4d99c9c3a123",
-    "source": "trudvsem"
-  },
-  {
     "id": "d0406af8-d390-11f1-86ae-9fe7202db8d6",
     "name": "Ведущий разработчик программного обеспечения",
     "role_name": "DevOps",
@@ -853,6 +840,19 @@
     "experience": "Не указано",
     "skills": [],
     "url": "https://trudvsem.ru/vacancy/card/1115260013890/d0406af8-d390-11f1-86ae-9fe7202db8d6",
+    "source": "trudvsem"
+  },
+  {
+    "id": "8486ffd8-7f7f-11f1-8ec3-4d99c9c3a123",
+    "name": "Инженер ИТ",
+    "role_name": "DevOps",
+    "employer": "ФИЛИАЛ АО \"КОНЦЕРН РОСЭНЕРГОАТОМ\" \"НОВОВОРОНЕЖСКАЯ АТОМНАЯ СТАНЦИЯ\"",
+    "area": "Воронежская область",
+    "sal_rub": 110000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/d2681090-7dfc-11ee-8f72-d549be31d974/8486ffd8-7f7f-11f1-8ec3-4d99c9c3a123",
     "source": "trudvsem"
   },
   {
@@ -1635,34 +1635,6 @@
     "experience": "Не указано",
     "skills": [],
     "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/0d8f9274-cd40-11f1-b79b-5f0ce528fb8f",
-    "source": "trudvsem"
-  },
-  {
-    "id": "6ffab284-c257-11f1-a4f6-9b3f53dfb764",
-    "name": "Java-разработчик (Middle+)",
-    "role_name": "DevOps",
-    "employer": "ООО \"Страховой брокер Сбербанка\"",
-    "area": "Город Москва",
-    "sal_rub": 265800,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "CI/CD",
-      "Docker",
-      "Git",
-      "Java",
-      "Jenkins",
-      "Kafka",
-      "Kubernetes",
-      "MongoDB",
-      "PostgreSQL",
-      "REST",
-      "REST API",
-      "Redis",
-      "SQL",
-      "Spring"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/5147746474134/6ffab284-c257-11f1-a4f6-9b3f53dfb764",
     "source": "trudvsem"
   },
   {
