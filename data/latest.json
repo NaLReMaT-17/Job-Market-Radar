@@ -689,21 +689,6 @@
     "source": "trudvsem"
   },
   {
-    "id": "5d871e18-5d48-11f0-bfca-d549be31d974",
-    "name": "Инженер-программист",
-    "role_name": "DevOps",
-    "employer": "ГКУ СО \"ФИНТЕХ\"",
-    "area": "Сахалинская область",
-    "sal_rub": 151450,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "CI/CD"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/e0b98960-e1e9-11ef-9a52-e7d0d2cf29b1/5d871e18-5d48-11f0-bfca-d549be31d974",
-    "source": "trudvsem"
-  },
-  {
     "id": "18ec8898-d8de-11f1-a422-775b9ebb0248",
     "name": "Senior-разработчик Битрикс24 (коробочная версия)",
     "role_name": "DevOps",
@@ -719,6 +704,21 @@
       "SQL"
     ],
     "url": "https://trudvsem.ru/vacancy/card/1225900014493/18ec8898-d8de-11f1-a422-775b9ebb0248",
+    "source": "trudvsem"
+  },
+  {
+    "id": "5d871e18-5d48-11f0-bfca-d549be31d974",
+    "name": "Инженер-программист",
+    "role_name": "DevOps",
+    "employer": "ГКУ СО \"ФИНТЕХ\"",
+    "area": "Сахалинская область",
+    "sal_rub": 151450,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "CI/CD"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/e0b98960-e1e9-11ef-9a52-e7d0d2cf29b1/5d871e18-5d48-11f0-bfca-d549be31d974",
     "source": "trudvsem"
   },
   {
@@ -1028,60 +1028,6 @@
     "source": "trudvsem"
   },
   {
-    "id": "2be86048-c097-11f1-9dff-97d306130813",
-    "name": "Инженер по автоматизации",
-    "role_name": "DevOps",
-    "employer": "ООО \"ЧЕРКИЗОВО-ИНФОТЕХ\"",
-    "area": "Город Москва",
-    "sal_rub": 80000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "Ansible",
-      "CI/CD",
-      "Kubernetes",
-      "Terraform"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/1225000117737/2be86048-c097-11f1-9dff-97d306130813",
-    "source": "trudvsem"
-  },
-  {
-    "id": "79e23aa8-c097-11f1-9dff-97d306130813",
-    "name": "Инженер по автоматизации",
-    "role_name": "DevOps",
-    "employer": "ООО \"ЧЕРКИЗОВО-ИНФОТЕХ\"",
-    "area": "Пензенская область",
-    "sal_rub": 80000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "Ansible",
-      "CI/CD",
-      "Kubernetes",
-      "Terraform"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/1225000117737/79e23aa8-c097-11f1-9dff-97d306130813",
-    "source": "trudvsem"
-  },
-  {
-    "id": "ef4b6888-c096-11f1-9dff-97d306130813",
-    "name": "Инженер по автоматизации",
-    "role_name": "DevOps",
-    "employer": "ООО \"ЧЕРКИЗОВО-ИНФОТЕХ\"",
-    "area": "Пензенская область",
-    "sal_rub": 80000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "Ansible",
-      "CI/CD",
-      "Kubernetes",
-      "Terraform"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/1225000117737/ef4b6888-c096-11f1-9dff-97d306130813",
-    "source": "trudvsem"
-  },
-  {
     "id": "4e40e6f0-d8e6-11f1-855f-9bbc1c820699",
     "name": "Аналитик разработки SIEM-контента (SOC) [RED Security, МТС Веб Сервисы]",
     "role_name": "DevOps",
@@ -1224,16 +1170,57 @@
     "source": "trudvsem"
   },
   {
-    "id": "c73552e8-5519-11f1-ae4c-b7d71698c4cb",
-    "name": "Начальник отдела разработки программного обеспечения",
+    "id": "2be86048-c097-11f1-9dff-97d306130813",
+    "name": "Инженер по автоматизации",
     "role_name": "DevOps",
-    "employer": "АО \"КОНЦЕРН ВКО \"АЛМАЗ - АНТЕЙ\"",
+    "employer": "ООО \"ЧЕРКИЗОВО-ИНФОТЕХ\"",
     "area": "Город Москва",
-    "sal_rub": 244830,
+    "sal_rub": 80000,
     "schedule": "fullDay",
     "experience": "Не указано",
-    "skills": [],
-    "url": "https://trudvsem.ru/vacancy/card/1027739001993/c73552e8-5519-11f1-ae4c-b7d71698c4cb",
+    "skills": [
+      "Ansible",
+      "CI/CD",
+      "Kubernetes",
+      "Terraform"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/1225000117737/2be86048-c097-11f1-9dff-97d306130813",
+    "source": "trudvsem"
+  },
+  {
+    "id": "79e23aa8-c097-11f1-9dff-97d306130813",
+    "name": "Инженер по автоматизации",
+    "role_name": "DevOps",
+    "employer": "ООО \"ЧЕРКИЗОВО-ИНФОТЕХ\"",
+    "area": "Пензенская область",
+    "sal_rub": 80000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "Ansible",
+      "CI/CD",
+      "Kubernetes",
+      "Terraform"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/1225000117737/79e23aa8-c097-11f1-9dff-97d306130813",
+    "source": "trudvsem"
+  },
+  {
+    "id": "ef4b6888-c096-11f1-9dff-97d306130813",
+    "name": "Инженер по автоматизации",
+    "role_name": "DevOps",
+    "employer": "ООО \"ЧЕРКИЗОВО-ИНФОТЕХ\"",
+    "area": "Пензенская область",
+    "sal_rub": 80000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "Ansible",
+      "CI/CD",
+      "Kubernetes",
+      "Terraform"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/1225000117737/ef4b6888-c096-11f1-9dff-97d306130813",
     "source": "trudvsem"
   },
   {
@@ -1284,6 +1271,19 @@
       "SQL"
     ],
     "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/78585f84-cd3e-11f1-abc7-1d45cafac0df",
+    "source": "trudvsem"
+  },
+  {
+    "id": "c73552e8-5519-11f1-ae4c-b7d71698c4cb",
+    "name": "Начальник отдела разработки программного обеспечения",
+    "role_name": "DevOps",
+    "employer": "АО \"КОНЦЕРН ВКО \"АЛМАЗ - АНТЕЙ\"",
+    "area": "Город Москва",
+    "sal_rub": 244830,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/1027739001993/c73552e8-5519-11f1-ae4c-b7d71698c4cb",
     "source": "trudvsem"
   },
   {
