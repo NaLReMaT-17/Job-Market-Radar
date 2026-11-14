@@ -163,6 +163,30 @@
     "source": "trudvsem"
   },
   {
+    "id": "a24abd20-de90-11f1-8ffc-835e11952b7c",
+    "name": "Product Owner / Techlead (BI)",
+    "role_name": "Data Engineer",
+    "employer": "ООО \"Страховой брокер Сбербанка\"",
+    "area": "Город Москва",
+    "sal_rub": 425100,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "Airflow",
+      "CI/CD",
+      "ClickHouse",
+      "Git",
+      "Kubernetes",
+      "Pandas",
+      "PostgreSQL",
+      "Python",
+      "SQL",
+      "Spark"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/5147746474134/a24abd20-de90-11f1-8ffc-835e11952b7c",
+    "source": "trudvsem"
+  },
+  {
     "id": "6275fb70-42d2-11f0-9234-cb26dff57dd7",
     "name": "Ведущий специалист по машинному обучению и методам обработки информации с применением искусственного интеллекта",
     "role_name": "Data Engineer",
@@ -418,6 +442,36 @@
     "source": "trudvsem"
   },
   {
+    "id": "3f4c7688-df41-11f1-87a4-09d0e8c84613",
+    "name": "Архитектор",
+    "role_name": "DevOps",
+    "employer": "АО \"ДИАЙПИ\"",
+    "area": "Челябинская область",
+    "sal_rub": 31157,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "Kubernetes"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/1056601489010/3f4c7688-df41-11f1-87a4-09d0e8c84613",
+    "source": "trudvsem"
+  },
+  {
+    "id": "d7c05020-df3d-11f1-8848-6f99e28577a1",
+    "name": "Архитектор",
+    "role_name": "DevOps",
+    "employer": "АО \"ДИАЙПИ\"",
+    "area": "Свердловская область",
+    "sal_rub": 31157,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "Kubernetes"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/1056601489010/d7c05020-df3d-11f1-8848-6f99e28577a1",
+    "source": "trudvsem"
+  },
+  {
     "id": "f543d6d8-ddbc-11f1-89c5-bd417410d521",
     "name": "Инженер-программист (направление Java)",
     "role_name": "DevOps",
@@ -563,19 +617,6 @@
     "source": "trudvsem"
   },
   {
-    "id": "8486ffd8-7f7f-11f1-8ec3-4d99c9c3a123",
-    "name": "Инженер ИТ",
-    "role_name": "DevOps",
-    "employer": "ФИЛИАЛ АО \"КОНЦЕРН РОСЭНЕРГОАТОМ\" \"НОВОВОРОНЕЖСКАЯ АТОМНАЯ СТАНЦИЯ\"",
-    "area": "Воронежская область",
-    "sal_rub": 110000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [],
-    "url": "https://trudvsem.ru/vacancy/card/d2681090-7dfc-11ee-8f72-d549be31d974/8486ffd8-7f7f-11f1-8ec3-4d99c9c3a123",
-    "source": "trudvsem"
-  },
-  {
     "id": "d0406af8-d390-11f1-86ae-9fe7202db8d6",
     "name": "Ведущий разработчик программного обеспечения",
     "role_name": "DevOps",
@@ -586,6 +627,19 @@
     "experience": "Не указано",
     "skills": [],
     "url": "https://trudvsem.ru/vacancy/card/1115260013890/d0406af8-d390-11f1-86ae-9fe7202db8d6",
+    "source": "trudvsem"
+  },
+  {
+    "id": "8486ffd8-7f7f-11f1-8ec3-4d99c9c3a123",
+    "name": "Инженер ИТ",
+    "role_name": "DevOps",
+    "employer": "ФИЛИАЛ АО \"КОНЦЕРН РОСЭНЕРГОАТОМ\" \"НОВОВОРОНЕЖСКАЯ АТОМНАЯ СТАНЦИЯ\"",
+    "area": "Воронежская область",
+    "sal_rub": 110000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/d2681090-7dfc-11ee-8f72-d549be31d974/8486ffd8-7f7f-11f1-8ec3-4d99c9c3a123",
     "source": "trudvsem"
   },
   {
@@ -666,19 +720,6 @@
     "source": "trudvsem"
   },
   {
-    "id": "bac41f80-d6c6-11f1-aa73-f5ba196f9df6",
-    "name": "Системный администратор",
-    "role_name": "DevOps",
-    "employer": "СПБ ГБУК \"МЦБС ИМ. М.Ю. ЛЕРМОНТОВА\"",
-    "area": "Город Санкт-Петербург",
-    "sal_rub": 90000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [],
-    "url": "https://trudvsem.ru/vacancy/card/1037843110832/bac41f80-d6c6-11f1-aa73-f5ba196f9df6",
-    "source": "trudvsem"
-  },
-  {
     "id": "04f3c954-cd41-11f1-a4f3-d96998355502",
     "name": "Ведущий разработчик серверной части (С#) [Секретарь, МТС Веб Сервисы]",
     "role_name": "DevOps",
@@ -698,6 +739,19 @@
       "Redis"
     ],
     "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/04f3c954-cd41-11f1-a4f3-d96998355502",
+    "source": "trudvsem"
+  },
+  {
+    "id": "bac41f80-d6c6-11f1-aa73-f5ba196f9df6",
+    "name": "Системный администратор",
+    "role_name": "DevOps",
+    "employer": "СПБ ГБУК \"МЦБС ИМ. М.Ю. ЛЕРМОНТОВА\"",
+    "area": "Город Санкт-Петербург",
+    "sal_rub": 90000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/1037843110832/bac41f80-d6c6-11f1-aa73-f5ba196f9df6",
     "source": "trudvsem"
   },
   {
@@ -826,32 +880,6 @@
     "source": "trudvsem"
   },
   {
-    "id": "1e9ff739-4492-11f1-8fcb-23fe0b827b56",
-    "name": "разработчик",
-    "role_name": "DevOps",
-    "employer": "ООО \"ЭР-ИКС\"",
-    "area": "Пермский край",
-    "sal_rub": 136200,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [],
-    "url": "https://trudvsem.ru/vacancy/card/1225900013250/1e9ff739-4492-11f1-8fcb-23fe0b827b56",
-    "source": "trudvsem"
-  },
-  {
-    "id": "afd268c0-32e0-11ef-8f49-d549be31d974",
-    "name": "Разработчик",
-    "role_name": "DevOps",
-    "employer": "ООО \"ЭР-ИКС\"",
-    "area": "Пермский край",
-    "sal_rub": 100000,
-    "schedule": "remote",
-    "experience": "Не указано",
-    "skills": [],
-    "url": "https://trudvsem.ru/vacancy/card/1225900013250/afd268c0-32e0-11ef-8f49-d549be31d974",
-    "source": "trudvsem"
-  },
-  {
     "id": "49241054-cd3f-11f1-965a-4139d5255e5d",
     "name": "Старший инженер поддержки BNG/BRAS [D-BNG, МТС Веб Сервисы]",
     "role_name": "DevOps",
@@ -930,6 +958,32 @@
       "REST"
     ],
     "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/559917d0-cd45-11f1-a4f3-d96998355502",
+    "source": "trudvsem"
+  },
+  {
+    "id": "1e9ff739-4492-11f1-8fcb-23fe0b827b56",
+    "name": "разработчик",
+    "role_name": "DevOps",
+    "employer": "ООО \"ЭР-ИКС\"",
+    "area": "Пермский край",
+    "sal_rub": 136200,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/1225900013250/1e9ff739-4492-11f1-8fcb-23fe0b827b56",
+    "source": "trudvsem"
+  },
+  {
+    "id": "afd268c0-32e0-11ef-8f49-d549be31d974",
+    "name": "Разработчик",
+    "role_name": "DevOps",
+    "employer": "ООО \"ЭР-ИКС\"",
+    "area": "Пермский край",
+    "sal_rub": 100000,
+    "schedule": "remote",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/1225900013250/afd268c0-32e0-11ef-8f49-d549be31d974",
     "source": "trudvsem"
   },
   {
@@ -1175,6 +1229,21 @@
     "source": "trudvsem"
   },
   {
+    "id": "aa025cd0-cdf1-11f1-a06f-fbf8ae5f6e59",
+    "name": "Ведущий менеджер по работе с клиентами (финансовый сектор) [МТС Веб Сервисы]",
+    "role_name": "DevOps",
+    "employer": "МТС",
+    "area": "Город Москва",
+    "sal_rub": 27903,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "CI/CD"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/aa025cd0-cdf1-11f1-a06f-fbf8ae5f6e59",
+    "source": "trudvsem"
+  },
+  {
     "id": "541ae584-ceb4-11f1-ab70-3f7f5552edd5",
     "name": "Аналитик (OAM) [ИРТЕЯ]",
     "role_name": "DevOps",
@@ -1202,21 +1271,6 @@
       "SQL"
     ],
     "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/54125a00-ceb4-11f1-bf48-094328b591a3",
-    "source": "trudvsem"
-  },
-  {
-    "id": "aa025cd0-cdf1-11f1-a06f-fbf8ae5f6e59",
-    "name": "Ведущий менеджер по работе с клиентами (финансовый сектор) [МТС Веб Сервисы]",
-    "role_name": "DevOps",
-    "employer": "МТС",
-    "area": "Город Москва",
-    "sal_rub": 27903,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "CI/CD"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/aa025cd0-cdf1-11f1-a06f-fbf8ae5f6e59",
     "source": "trudvsem"
   },
   {
