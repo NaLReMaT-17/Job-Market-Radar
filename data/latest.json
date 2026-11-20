@@ -61,29 +61,6 @@
     "source": "trudvsem"
   },
   {
-    "id": "887135e4-d2cf-11f1-934e-a10c79f4af41",
-    "name": "Tech Lead Data engineer",
-    "role_name": "Data Engineer",
-    "employer": "Сбербанк России, ПАО",
-    "area": "Город Москва",
-    "sal_rub": 400000,
-    "schedule": "flexible",
-    "experience": "Не указано",
-    "skills": [
-      "CI/CD",
-      "Hadoop",
-      "Java",
-      "Jenkins",
-      "Kafka",
-      "Python",
-      "SQL",
-      "Scala",
-      "Spark"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/5147746474134/887135e4-d2cf-11f1-934e-a10c79f4af41",
-    "source": "trudvsem"
-  },
-  {
     "id": "d8c21e38-ac44-11f1-8587-2b3d872122a6",
     "name": "Главный инженер-программист (Data Engineer / ML Engineer)",
     "role_name": "Data Engineer",
@@ -261,19 +238,6 @@
     "source": "trudvsem"
   },
   {
-    "id": "c200c4d3-e35d-11f1-9c60-dda0e0f24b9e",
-    "name": "DevOps-инженер",
-    "role_name": "DevOps",
-    "employer": "АО \"НИИ \"ВЕКТОР\"",
-    "area": "Город Санкт-Петербург",
-    "sal_rub": 140000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [],
-    "url": "https://trudvsem.ru/vacancy/card/1117847020400/c200c4d3-e35d-11f1-9c60-dda0e0f24b9e",
-    "source": "trudvsem"
-  },
-  {
     "id": "0b907d58-8753-11f1-9699-4f4591bc4f3e",
     "name": "DevOps-инженер",
     "role_name": "DevOps",
@@ -292,6 +256,19 @@
       "Python"
     ],
     "url": "https://trudvsem.ru/vacancy/card/1037804018614/0b907d58-8753-11f1-9699-4f4591bc4f3e",
+    "source": "trudvsem"
+  },
+  {
+    "id": "c200c4d3-e35d-11f1-9c60-dda0e0f24b9e",
+    "name": "DevOps-инженер",
+    "role_name": "DevOps",
+    "employer": "АО \"НИИ \"ВЕКТОР\"",
+    "area": "Город Санкт-Петербург",
+    "sal_rub": 140000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/1117847020400/c200c4d3-e35d-11f1-9c60-dda0e0f24b9e",
     "source": "trudvsem"
   },
   {
@@ -568,6 +545,21 @@
     "source": "trudvsem"
   },
   {
+    "id": "4d0afcb8-b5c0-11f1-80a9-795f97aab242",
+    "name": "Доцент Факультета информационных технологий и анализа больших данных",
+    "role_name": "DevOps",
+    "employer": "ФИНАНСОВЫЙ УНИВЕРСИТЕТ, ФИНУНИВЕРСИТЕТ",
+    "area": "Город Москва",
+    "sal_rub": 510000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "Python"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/1027700451976/4d0afcb8-b5c0-11f1-80a9-795f97aab242",
+    "source": "trudvsem"
+  },
+  {
     "id": "d5c6a648-cd66-11f1-8a66-cf4c2450ca83",
     "name": "ИИ - инженер",
     "role_name": "DevOps",
@@ -581,21 +573,6 @@
       "gRPC"
     ],
     "url": "https://trudvsem.ru/vacancy/card/1023501237330/d5c6a648-cd66-11f1-8a66-cf4c2450ca83",
-    "source": "trudvsem"
-  },
-  {
-    "id": "4d0afcb8-b5c0-11f1-80a9-795f97aab242",
-    "name": "Доцент Факультета информационных технологий и анализа больших данных",
-    "role_name": "DevOps",
-    "employer": "ФИНАНСОВЫЙ УНИВЕРСИТЕТ, ФИНУНИВЕРСИТЕТ",
-    "area": "Город Москва",
-    "sal_rub": 510000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "Python"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/1027700451976/4d0afcb8-b5c0-11f1-80a9-795f97aab242",
     "source": "trudvsem"
   },
   {
@@ -1336,6 +1313,19 @@
       "Terraform"
     ],
     "url": "https://trudvsem.ru/vacancy/card/1093460002371/7b261442-c327-11f1-9a33-81fa0fc133be",
+    "source": "trudvsem"
+  },
+  {
+    "id": "0134078b-e411-11f1-9be5-7f6c8c1e5938",
+    "name": "Инженер по защите информации",
+    "role_name": "DevOps",
+    "employer": "ООО \"ДЖЕЙСИСИТИЭС ИНТЕРНЕЙШНЛ ЛОГИСТИКС РУС\"",
+    "area": "Город Москва",
+    "sal_rub": 62500,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/1247700194290/0134078b-e411-11f1-9be5-7f6c8c1e5938",
     "source": "trudvsem"
   },
   {
