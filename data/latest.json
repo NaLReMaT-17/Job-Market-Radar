@@ -129,6 +129,37 @@
     "source": "trudvsem"
   },
   {
+    "id": "6275fb70-42d2-11f0-9234-cb26dff57dd7",
+    "name": "Ведущий специалист по машинному обучению и методам обработки информации с применением искусственного интеллекта",
+    "role_name": "Data Engineer",
+    "employer": "ООО  \"НТЦ СЕВЕНТЕСТ\"",
+    "area": "Город Санкт-Петербург",
+    "sal_rub": 135000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/1077847466003/6275fb70-42d2-11f0-9234-cb26dff57dd7",
+    "source": "trudvsem"
+  },
+  {
+    "id": "3c69f1b8-e7e1-11f1-ba9d-976d66553d64",
+    "name": "DevOps-инженер",
+    "role_name": "DevOps",
+    "employer": "ББР БАНК (АО)",
+    "area": "Московская область",
+    "sal_rub": 230000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "Bash",
+      "CI/CD",
+      "Docker",
+      "Python"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/1027700074775/3c69f1b8-e7e1-11f1-ba9d-976d66553d64",
+    "source": "trudvsem"
+  },
+  {
     "id": "69d6a078-4954-11f1-b66a-39cf7f2a9c71",
     "name": "DevOps инженер",
     "role_name": "DevOps",
@@ -454,19 +485,6 @@
     "source": "trudvsem"
   },
   {
-    "id": "011c7658-62f8-11f1-b1a3-adad5cc6cbe1",
-    "name": "Главный архитектор направления по архитектуре и технологиям программы 1С",
-    "role_name": "DevOps",
-    "employer": "ООО \"АЛРОСА ИТ\"",
-    "area": "Город Москва",
-    "sal_rub": 91990,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [],
-    "url": "https://trudvsem.ru/vacancy/card/1195476078258/011c7658-62f8-11f1-b1a3-adad5cc6cbe1",
-    "source": "trudvsem"
-  },
-  {
     "id": "a8010cc8-b5c2-11f1-80a9-795f97aab242",
     "name": "Доцент Факультета информационных технологий и анализа больших данных",
     "role_name": "DevOps",
@@ -479,6 +497,19 @@
       "Python"
     ],
     "url": "https://trudvsem.ru/vacancy/card/1027700451976/a8010cc8-b5c2-11f1-80a9-795f97aab242",
+    "source": "trudvsem"
+  },
+  {
+    "id": "011c7658-62f8-11f1-b1a3-adad5cc6cbe1",
+    "name": "Главный архитектор направления по архитектуре и технологиям программы 1С",
+    "role_name": "DevOps",
+    "employer": "ООО \"АЛРОСА ИТ\"",
+    "area": "Город Москва",
+    "sal_rub": 91990,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/1195476078258/011c7658-62f8-11f1-b1a3-adad5cc6cbe1",
     "source": "trudvsem"
   },
   {
@@ -524,6 +555,21 @@
     "experience": "Не указано",
     "skills": [],
     "url": "https://trudvsem.ru/vacancy/card/1195476078258/07d41318-a838-11f1-8a32-2b6903e6a9c2",
+    "source": "trudvsem"
+  },
+  {
+    "id": "78e89130-e7cf-11f1-924d-256efe424131",
+    "name": "Архитектор решений",
+    "role_name": "DevOps",
+    "employer": "АО \"СЕВЕРСТАЛЬ-ИНФОКОМ\"",
+    "area": "Город Москва",
+    "sal_rub": 40000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "Airflow"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/1023501237330/78e89130-e7cf-11f1-924d-256efe424131",
     "source": "trudvsem"
   },
   {
@@ -679,6 +725,21 @@
     "source": "trudvsem"
   },
   {
+    "id": "f1b885d0-e783-11f1-8931-dd33cc8cc9df",
+    "name": "Инженер по инфраструктуре",
+    "role_name": "DevOps",
+    "employer": "АНО \"СИРИУС.КУРСЫ\"",
+    "area": "Сириус федеральная территория",
+    "sal_rub": 180000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "CI/CD"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/1212300060554/f1b885d0-e783-11f1-8931-dd33cc8cc9df",
+    "source": "trudvsem"
+  },
+  {
     "id": "9a6783c4-2443-11f1-89a6-53287c563eeb",
     "name": "IT-директор мобильного приложения",
     "role_name": "DevOps",
@@ -784,23 +845,6 @@
       "GCP"
     ],
     "url": "https://trudvsem.ru/vacancy/card/1223600021336/67376c25-4223-11f1-9ac5-21d70050d784",
-    "source": "trudvsem"
-  },
-  {
-    "id": "49241054-cd3f-11f1-965a-4139d5255e5d",
-    "name": "Старший инженер поддержки BNG/BRAS [D-BNG, МТС Веб Сервисы]",
-    "role_name": "DevOps",
-    "employer": "МТС",
-    "area": "Город Москва",
-    "sal_rub": 30000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "Ansible",
-      "Linux",
-      "Python"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/49241054-cd3f-11f1-965a-4139d5255e5d",
     "source": "trudvsem"
   },
   {
