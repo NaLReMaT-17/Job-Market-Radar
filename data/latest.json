@@ -206,6 +206,36 @@
     "source": "trudvsem"
   },
   {
+    "id": "a55b92c1-c15c-11f1-aa68-7523fb122f6d",
+    "name": "DevOps инженер",
+    "role_name": "DevOps",
+    "employer": "ООО \"ЗАЗЕКС\"",
+    "area": "Ростовская область",
+    "sal_rub": 110000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "CI/CD"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/1106193003003/a55b92c1-c15c-11f1-aa68-7523fb122f6d",
+    "source": "trudvsem"
+  },
+  {
+    "id": "d01196d0-d364-11f1-b188-596978c8f37b",
+    "name": "DevOps инженер",
+    "role_name": "DevOps",
+    "employer": "ООО \"ЗАЗЕКС\"",
+    "area": "Ростовская область",
+    "sal_rub": 110000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "CI/CD"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/1106193003003/d01196d0-d364-11f1-b188-596978c8f37b",
+    "source": "trudvsem"
+  },
+  {
     "id": "0b907d58-8753-11f1-9699-4f4591bc4f3e",
     "name": "DevOps-инженер",
     "role_name": "DevOps",
@@ -287,36 +317,6 @@
       "PostgreSQL"
     ],
     "url": "https://trudvsem.ru/vacancy/card/1207800148380/a5dd9ef8-503c-11f0-bbbf-d549be31d974",
-    "source": "trudvsem"
-  },
-  {
-    "id": "d01196d0-d364-11f1-b188-596978c8f37b",
-    "name": "DevOps инженер",
-    "role_name": "DevOps",
-    "employer": "ООО \"ЗАЗЕКС\"",
-    "area": "Ростовская область",
-    "sal_rub": 110000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "CI/CD"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/1106193003003/d01196d0-d364-11f1-b188-596978c8f37b",
-    "source": "trudvsem"
-  },
-  {
-    "id": "a55b92c1-c15c-11f1-aa68-7523fb122f6d",
-    "name": "DevOps инженер",
-    "role_name": "DevOps",
-    "employer": "ООО \"ЗАЗЕКС\"",
-    "area": "Ростовская область",
-    "sal_rub": 110000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "CI/CD"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/1106193003003/a55b92c1-c15c-11f1-aa68-7523fb122f6d",
     "source": "trudvsem"
   },
   {
@@ -485,6 +485,19 @@
     "source": "trudvsem"
   },
   {
+    "id": "011c7658-62f8-11f1-b1a3-adad5cc6cbe1",
+    "name": "Главный архитектор направления по архитектуре и технологиям программы 1С",
+    "role_name": "DevOps",
+    "employer": "ООО \"АЛРОСА ИТ\"",
+    "area": "Город Москва",
+    "sal_rub": 91990,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/1195476078258/011c7658-62f8-11f1-b1a3-adad5cc6cbe1",
+    "source": "trudvsem"
+  },
+  {
     "id": "a8010cc8-b5c2-11f1-80a9-795f97aab242",
     "name": "Доцент Факультета информационных технологий и анализа больших данных",
     "role_name": "DevOps",
@@ -497,19 +510,6 @@
       "Python"
     ],
     "url": "https://trudvsem.ru/vacancy/card/1027700451976/a8010cc8-b5c2-11f1-80a9-795f97aab242",
-    "source": "trudvsem"
-  },
-  {
-    "id": "011c7658-62f8-11f1-b1a3-adad5cc6cbe1",
-    "name": "Главный архитектор направления по архитектуре и технологиям программы 1С",
-    "role_name": "DevOps",
-    "employer": "ООО \"АЛРОСА ИТ\"",
-    "area": "Город Москва",
-    "sal_rub": 91990,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [],
-    "url": "https://trudvsem.ru/vacancy/card/1195476078258/011c7658-62f8-11f1-b1a3-adad5cc6cbe1",
     "source": "trudvsem"
   },
   {
@@ -887,6 +887,35 @@
     "source": "trudvsem"
   },
   {
+    "id": "4e40e6f0-d8e6-11f1-855f-9bbc1c820699",
+    "name": "Аналитик разработки SIEM-контента (SOC) [RED Security, МТС Веб Сервисы]",
+    "role_name": "DevOps",
+    "employer": "МТС",
+    "area": "Самарская область",
+    "sal_rub": 30000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [],
+    "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/4e40e6f0-d8e6-11f1-855f-9bbc1c820699",
+    "source": "trudvsem"
+  },
+  {
+    "id": "4e30ba54-d8e6-11f1-a3e5-1733995fe200",
+    "name": "Сетевой инженер SOC [RED Security, МТС Веб Сервисы]",
+    "role_name": "DevOps",
+    "employer": "МТС",
+    "area": "Самарская область",
+    "sal_rub": 30000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "Bash",
+      "Linux"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/4e30ba54-d8e6-11f1-a3e5-1733995fe200",
+    "source": "trudvsem"
+  },
+  {
     "id": "a87d5a84-d383-11f1-9fda-5fa602574bca",
     "name": "Специалист по реагированию на инциденты (DFIR SOC L2) [RED Security, МТС Веб Сервисы]",
     "role_name": "DevOps",
@@ -924,53 +953,6 @@
       "Spring"
     ],
     "url": "https://trudvsem.ru/vacancy/card/5147746474134/ddd97070-e336-11f1-ab45-3d4e40428e31",
-    "source": "trudvsem"
-  },
-  {
-    "id": "4e40e6f0-d8e6-11f1-855f-9bbc1c820699",
-    "name": "Аналитик разработки SIEM-контента (SOC) [RED Security, МТС Веб Сервисы]",
-    "role_name": "DevOps",
-    "employer": "МТС",
-    "area": "Самарская область",
-    "sal_rub": 30000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [],
-    "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/4e40e6f0-d8e6-11f1-855f-9bbc1c820699",
-    "source": "trudvsem"
-  },
-  {
-    "id": "4e30ba54-d8e6-11f1-a3e5-1733995fe200",
-    "name": "Сетевой инженер SOC [RED Security, МТС Веб Сервисы]",
-    "role_name": "DevOps",
-    "employer": "МТС",
-    "area": "Самарская область",
-    "sal_rub": 30000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "Bash",
-      "Linux"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/4e30ba54-d8e6-11f1-a3e5-1733995fe200",
-    "source": "trudvsem"
-  },
-  {
-    "id": "9b0f5bb0-d6ac-11f1-8975-0988f6b99d6f",
-    "name": "Team lead DS",
-    "role_name": "DevOps",
-    "employer": "Сбербанк России, ПАО",
-    "area": "Город Москва",
-    "sal_rub": 396000,
-    "schedule": "flexible",
-    "experience": "Не указано",
-    "skills": [
-      "Airflow",
-      "CI/CD",
-      "Docker",
-      "Kubernetes"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/5147746474134/9b0f5bb0-d6ac-11f1-8975-0988f6b99d6f",
     "source": "trudvsem"
   },
   {
