@@ -41,29 +41,6 @@
     "source": "trudvsem"
   },
   {
-    "id": "e5d85b70-dce1-11f1-a575-57a40a5ef2d3",
-    "name": "Старший Инженер по машинному обучению (ML Engineer) [RecSys, Big Data, МТС Веб Сервисы]",
-    "role_name": "Data Engineer",
-    "employer": "МТС",
-    "area": "Город Москва",
-    "sal_rub": 225000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "Airflow",
-      "FastAPI",
-      "Hadoop",
-      "K8s",
-      "Kafka",
-      "PostgreSQL",
-      "PyTorch",
-      "Python",
-      "SQL"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/e5d85b70-dce1-11f1-a575-57a40a5ef2d3",
-    "source": "trudvsem"
-  },
-  {
     "id": "a24abd20-de90-11f1-8ffc-835e11952b7c",
     "name": "Product Owner / Techlead (BI)",
     "role_name": "Data Engineer",
@@ -1167,6 +1144,22 @@
     "source": "trudvsem"
   },
   {
+    "id": "cdcc6140-dda2-11f1-8ffc-835e11952b7c",
+    "name": "Старший Владелец продукта [MWS Tables & АФК «Система», МТС Веб Сервисы]",
+    "role_name": "DevOps",
+    "employer": "МТС",
+    "area": "Город Москва",
+    "sal_rub": 225000,
+    "schedule": "fullDay",
+    "experience": "Не указано",
+    "skills": [
+      "REST",
+      "REST API"
+    ],
+    "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/cdcc6140-dda2-11f1-8ffc-835e11952b7c",
+    "source": "trudvsem"
+  },
+  {
     "id": "7b261442-c327-11f1-9a33-81fa0fc133be",
     "name": "Системный администратор",
     "role_name": "DevOps",
@@ -1185,22 +1178,6 @@
       "Terraform"
     ],
     "url": "https://trudvsem.ru/vacancy/card/1093460002371/7b261442-c327-11f1-9a33-81fa0fc133be",
-    "source": "trudvsem"
-  },
-  {
-    "id": "cdcc6140-dda2-11f1-8ffc-835e11952b7c",
-    "name": "Старший Владелец продукта [MWS Tables & АФК «Система», МТС Веб Сервисы]",
-    "role_name": "DevOps",
-    "employer": "МТС",
-    "area": "Город Москва",
-    "sal_rub": 225000,
-    "schedule": "fullDay",
-    "experience": "Не указано",
-    "skills": [
-      "REST",
-      "REST API"
-    ],
-    "url": "https://trudvsem.ru/vacancy/card/7226c750-02f1-11eb-8600-bfd13399602c/cdcc6140-dda2-11f1-8ffc-835e11952b7c",
     "source": "trudvsem"
   },
   {
